@@ -16,20 +16,66 @@
           <div class="container">
               <a class="navbar-brand" href="#">Commuter Assistance Program</a>
             <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
+            <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#signUp">
+              Sign-Up Now!</a>
+            <a href="#" data-toggle="modal" data-target="#signIn" class="btn btn-primary">Sign-In!</a>
           </form>
           </div>
         </nav>
 
       </div>
     </div>
+  <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sign-Up!</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+            <input type="text" placeholder="Name" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Email" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="password" placeholder="Password" class="form-control">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Sign-Up!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sign-In</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+            <input type="text" placeholder="Email" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="password" placeholder="Password" class="form-control">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Sign-In</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <%= yield %>
+
+
 
 
 </body>
