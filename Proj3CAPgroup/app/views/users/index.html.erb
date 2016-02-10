@@ -17,20 +17,34 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Sign-Up!</h4>
       </div>
+    
       <div class="modal-body">
           <div class="form-group">
-            <input type="text" placeholder="Name" class="form-control">
+            <%= form_for :user, :html => { :class => "class_name_here"}, url: '/users' do |f| %>
+
+            Name: <%= f.text_field :name %>
+            Email: <%= f.text_field :email %>
+            Password: <%= f.password_field :password %>
+            Password Confirmation: <%= f.password_field :password_confirmation %>
+            <%= f.submit "Submit" %>
+
+          <% end %>
+
+
+<!-- 
+
+            <input type="text" name="name" placeholder="Name" class="form-control">
           </div>
           <div class="form-group">
-            <input type="text" placeholder="Email" class="form-control">
+            <input type="text" name="email"placeholder="Email" class="form-control">
           </div>
           <div class="form-group">
-            <input type="password" placeholder="Password" class="form-control">
+            <input type="password" name="password"placeholder="Password" class="form-control">
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Sign-Up!</button>
-      </div>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Sign-Up!</button> -->
+      <!-- </div -->
     </div>
   </div>
 </div>
