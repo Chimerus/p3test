@@ -3,9 +3,8 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		#find the usere by there email
+		#find the user by their email
 		user = User.where(email: params[:email]).first
-     binding.pry
 		if user && user.authenticate(params[:password])
 		  session[:user_id] = user.id
 		 redirect_to '/'
@@ -13,7 +12,7 @@ class SessionsController < ApplicationController
 			redirect_to '/login'
 		end
 	end
-	def destory 
+	def destroy
 		session[:user_id] = nil
 		redirect_to '/login'
 
