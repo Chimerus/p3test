@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
 
 	def create
 		#find the usere by there email
-		user = User.find_by_email(params[:email])
-
+		user = User.where(email: params[:email]).first
+     binding.pry
 		if user && user.authenticate(params[:password])
 		  session[:user_id] = user.id
 		 redirect_to '/'
