@@ -52,13 +52,52 @@
           <h1>25<span class="smallfont">min</span></h1>
           <p>ETA at 6:07pm</p>
         </div>
-        <div class="location">
-          <h3>Work</h3>
-          <h1>25<span class="smallfont">min</span></h1>
-          <p>ETA at 6:07pm</p>
-        </div>
+        <a href="#" data-toggle="modal" data-target="#addLocation" class="btn btn-primary location width33">Add Location</a>
       </div>
 
     </div>
+<div class="modal fade" id="addLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Location</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Origin:</span>
+          <input type="text" class="form-control" placeholder="Origin Location" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon2">Destination:</span>
+          <input type="text" class="form-control" placeholder="Destination Location" aria-describedby="basic-addon2">
+        </div>
+        <!-- Single button -->
+        <!-- <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle left" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Method of Transportation <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Walk</a></li>
+            <li><a href="#">Bike</a></li>
+            <li><a href="#">Car</a></li>
+          </ul>
+          <div class="clearfix"></div>
+        </div> -->
+        <ul class="list-group">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Generate ETA</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>

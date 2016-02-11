@@ -6801,7 +6801,7 @@ body {
 body {
   color: #fff;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  // text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
 body.homepage {
@@ -6832,6 +6832,14 @@ body.showpage {
 
 .smallfont {
   font-size: 12px;
+}
+
+.width33 {
+  width: 100%
+}
+
+.left {
+  float:left;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
