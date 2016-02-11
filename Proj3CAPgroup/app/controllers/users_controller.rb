@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   def eta
     # put your google maps key in your own env.
     @key = ENV['MAPS_KEY']
+    @locate_key = ['GOOGLE_MAPS_BROWSER_API_KEY']
+    # @key = ENV['MAPS_KEY']
     # set the origin, pull from location?
     @origin = '10 E 21st St, New York, NY 10010'
     #set the destination, pull from database.
@@ -16,9 +18,9 @@ class UsersController < ApplicationController
     # have to do this httparty hackaround 
     # response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+@origin+'&destinations='+@destination+'&mode='+@ride+'&language=en-EN&key='+@key) <- distance matrix
     response = HTTParty.get('https://maps.googleapis.com/maps/api/directions/json?origin='+@origin+'&destination='+@destination+'&mode='+@ride+'&language=en-EN&key='+@key)
+    debugger
     # turns it useful
     parsed_response = JSON.parse(response.body)  
-    debugger
     # parsed_response["rows"].first["elements"].first["duration"] gets text and value
     # @time=parsed_response["rows"].first["elements"].first["duration"]["text"] <- distance matrix
     # look at the parsed response for directions api!... its enormous!
