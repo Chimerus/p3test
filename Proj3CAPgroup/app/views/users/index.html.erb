@@ -1,10 +1,11 @@
+<body class="homepage">
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 text-center bootstrap-welcome">
-      <h1>Bootstrap 4 Works!</h1>
-      <p class="lead">Go ahead and build your awesome app now.</p>
+    <div class="col-sm-12 text-center bootstrap-welcome margin200px">
+      <h1>Welcome to the Commuter Assistance Program</h1>
+      <p class="lead">Want a personalized dashboard of your favorite places?</p>
       <a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-        Launch demo modal
+        Sign-Up Now!
       </a>
     </div>
   </div>
@@ -17,20 +18,35 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Sign-Up!</h4>
       </div>
+
       <div class="modal-body">
           <div class="form-group">
-            <input type="text" placeholder="Name" class="form-control">
+            <%= bootstrap_form_for :user, :html => { :class => "class_name_here"}, url: '/users' do |f| %>
+
+             <%= f.text_field :name,autofocus: true, placeholder: 'Name', hide_label: true %>
+           <%= f.text_field :email,  placeholder: 'Email', hide_label: true %>
+           <%= f.password_field :password,  placeholder: 'Password' , hide_label: true%>
+            <%= f.password_field :password_confirmation,  placeholder: 'Password confirmation', hide_label: true %>
+            <%= f.submit "Submit",  class: 'btn btn-warning' %>
+
+          <% end %>
+
+
+<!--
+
+            <input type="text" name="name" placeholder="Name" class="form-control">
           </div>
           <div class="form-group">
-            <input type="text" placeholder="Email" class="form-control">
+            <input type="text" name="email"placeholder="Email" class="form-control">
           </div>
           <div class="form-group">
-            <input type="password" placeholder="Password" class="form-control">
+            <input type="password" name="password"placeholder="Password" class="form-control">
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Sign-Up!</button>
-      </div>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Sign-Up!</button> -->
+      <!-- </div -->
     </div>
   </div>
 </div>
+</body>

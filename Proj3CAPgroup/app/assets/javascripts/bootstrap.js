@@ -4,6 +4,8 @@
  * Licensed under the MIT license
  */
 
+
+
 if (typeof jQuery === 'undefined') {
   throw new Error('Bootstrap\'s JavaScript requires jQuery')
 }
@@ -1192,7 +1194,6 @@ if (typeof jQuery === 'undefined') {
     this.$body[0].removeChild(scrollDiv)
     return scrollbarWidth
   }
-
 
   // MODAL PLUGIN DEFINITION
   // =======================
