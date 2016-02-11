@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location_name: MyString
+  address: MyString
+  city: MyString
+  state: MyString
+  zip: 1
+  home: false
+  work: false
+  favorite: false
+  default_transport: MyString
+
+two:
+  location_name: MyString
+  address: MyString
+  city: MyString
+  state: MyString
+  zip: 1
+  home: false
+  work: false
+  favorite: false
+  default_transport: MyString

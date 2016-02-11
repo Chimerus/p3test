@@ -122,12 +122,15 @@ body {
  * Footer
  */
 
+
 .mastfoot {
   color: #999; /* IE8 proofing */
   color: rgba(255,255,255,.5);
 }
 
-
+input[type="tex"]{
+   color: #000;
+}
 /*
  * Affix and center
  */

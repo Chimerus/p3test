@@ -1,0 +1,21 @@
+class SessionsController < ApplicationController
+	def new
+	end
+
+	def create
+		#find the usere by there email
+		user = User.where(email: params[:email]).first
+     binding.pry
+		if user && user.authenticate(params[:password])
+		  session[:user_id] = user.id
+		 redirect_to '/'
+		else
+			redirect_to '/login'
+		end
+	end
+	def destory 
+		session[:user_id] = nil
+		redirect_to '/login'
+
+	end
+end
