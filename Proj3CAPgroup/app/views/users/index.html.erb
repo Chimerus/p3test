@@ -20,13 +20,13 @@
     
       <div class="modal-body">
           <div class="form-group">
-            <%= form_for :user, :html => { :class => "class_name_here"}, url: '/users' do |f| %>
+            <%= bootstrap_form_for :user, :html => { :class => "class_name_here"}, url: '/users' do |f| %>
 
-            Name: <%= f.text_field :name %>
-            Email: <%= f.text_field :email %>
-            Password: <%= f.password_field :password %>
-            Password Confirmation: <%= f.password_field :password_confirmation %>
-            <%= f.submit "Submit" %>
+             <%= f.text_field :name,autofocus: true, placeholder: 'Name', hide_label: true %>
+           <%= f.text_field :email,  placeholder: 'Email', hide_label: true %>
+           <%= f.password_field :password,  placeholder: 'Password' , hide_label: true%>
+            <%= f.password_field :password_confirmation,  placeholder: 'Password confirmation', hide_label: true %>
+            <%= f.submit "Submit",  class: 'btn' %>
 
           <% end %>
 
@@ -46,5 +46,6 @@
         <button type="button" class="btn btn-primary" data-dismiss="modal">Sign-Up!</button> -->
       <!-- </div -->
     </div>
+    <%=current_user if current_user.name %>
   </div>
 </div>
