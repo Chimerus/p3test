@@ -15,6 +15,9 @@
         <nav class="navbar navbar-inverse navbar-static-top">
           <div class="container">
               <a class="navbar-brand" href="#">Commuter Assistance Program</a>
+              <% if current_user%>
+              <p> <%=current_user['name'] %></p>
+              <%end%>
             <form class="navbar-form navbar-right">
             <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#signUp">
               Sign-Up Now</a>

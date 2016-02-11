@@ -7,15 +7,16 @@ class SessionsController < ApplicationController
 		user = User.where(email: params[:email]).first
      binding.pry
 		if user && user.authenticate(params[:password])
-		  session[:user_id] = user.id
+		  cookies.permanent[:auth_token] = user.auth_token
 		 redirect_to '/'
 		else
+			flash.now.alert = "Invalid email or password"
 			redirect_to '/login'
 		end
 	end
 	def destory 
-		session[:user_id] = nil
-		redirect_to '/login'
+		cookies.delete(:auth_token)
+		redirect_to '/login' #:notice => "Logged out!"
 
 	end
 end
