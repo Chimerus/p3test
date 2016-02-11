@@ -68,28 +68,71 @@
           <span class="input-group-addon" id="basic-addon1">Origin:</span>
           <input type="text" class="form-control" placeholder="Origin Location" aria-describedby="basic-addon1">
         </div>
-
         <div class="input-group">
-          <span class="input-group-addon" id="basic-addon2">Destination:</span>
-          <input type="text" class="form-control" placeholder="Destination Location" aria-describedby="basic-addon2">
+          <span class="input-group-addon" id="basic-addon1">Destination Name:</span>
+          <input type="text" class="form-control" placeholder="Destination Name" aria-describedby="basic-addon1">
         </div>
-        <form role="form left">
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Walk</label>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon2">Street Address:</span>
+          <input type="text" class="form-control" placeholder="Street Address" aria-describedby="basic-addon2">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon2">City:</span>
+          <input type="text" class="form-control" placeholder="City" aria-describedby="basic-addon2">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon2">State:</span>
+          <input type="text" class="form-control" placeholder="State" aria-describedby="basic-addon2">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon2">Zip:</span>
+          <input type="text" class="form-control" placeholder="Zip" aria-describedby="basic-addon2">
+        </div>
+        <div class="margin5pxleft">
+        <!-- <form role="form"> -->
+            <div class="radio-inline">
+              <label>
+                <input type="radio" name="optionsRadios" id="Home" value="option1">
+                Home
+              </label>
             </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Bike</label>
+            <div class="radio-inline">
+              <label>
+                <input type="radio" name="optionsRadios" id="Work" value="option2">
+                Work
+              </label>
             </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Taxi</label>
+            <div></div>
+            <div class="radio-inline">
+              <label>
+                <input type="radio" name="transportationOptions" id="Walking" value="transport1">
+                Walk
+              </label>
             </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Bus</label>
+            <div class="radio-inline">
+              <label>
+                <input type="radio" name="transportationOptions" id="Bicycling" value="transport2">
+                Bike
+              </label>
             </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Subway</label>
+            <div class="radio-inline">
+              <label>
+                <input type="radio" name="transportationOptions" id="Driving" value="transport3">
+                Drive
+              </label>
             </div>
-          </form>
+            <div class="radio-inline">
+              <label>
+                <input type="radio" name="transportationOptions" id="Public_Transit" value="transport4">
+                Public Transit
+              </label>
+            </div>
+            <div></div>
+            <div class="radio-inline">
+              <label><input type="radio" name="favoriteRadio" id="favoriteRadio" value="favorite">Favorite</label>
+            </div>
+          <!-- </form> -->
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Generate ETA</button>
