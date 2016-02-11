@@ -11,9 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 0) do
+=======
+ActiveRecord::Schema.define(version: 20160211185108) do
+>>>>>>> 243d9d2f3037a0e74431ef3cab67d8e2731606b4
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< HEAD
+=======
+  create_table "locations", force: :cascade do |t|
+    t.string   "location_name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.boolean  "home"
+    t.boolean  "work"
+    t.boolean  "favorite"
+    t.string   "default_transport"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "user_id"
+  end
+
+  add_index "locations", ["user_id"], name: "index_locations_on_user_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "password_digest"
+    t.string   "email"
+    t.string   "avatar"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "auth_token"
+  end
+
+  add_foreign_key "locations", "users"
+>>>>>>> 243d9d2f3037a0e74431ef3cab67d8e2731606b4
 end

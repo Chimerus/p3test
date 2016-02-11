@@ -1,14 +1,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Proj3CAPgroup</title>
+  <title>CAP</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
-<body>
+<!-- <body> -->
 
-<%= yield %>
+    <div class="navbar-wrapper">
+      <div class="container">
 
-</body>
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+              <a class="navbar-brand" href="#">Commuter Assistance Program</a>
+              <% if current_user%>
+              <p> <%=current_user['name'] %></p>
+              <%end%>
+            <form class="navbar-form navbar-right">
+            <% if current_user %>
+              <h5>Welcome <%= current_user['name'] %> the time is now <%= Time.now.strftime("%I:%M %p") %>.</h5>
+            <% else %>
+            <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#signUp">
+              Sign-Up Now</a>
+            <a href="#" data-toggle="modal" data-target="#signIn" class="btn btn-primary">Sign-In</a>
+          </form>
+          <% end %>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+  <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sign-Up</h4>
+      </div>
+          <div class="modal-body">
+              <div class="form-group">
+                <%= bootstrap_form_for :user, :html => { :class => "class_name_here"}, url: '/users' do |f| %>
+
+                 <%= f.text_field :name,autofocus: true, placeholder: 'Name', hide_label: true %>
+               <%= f.text_field :email,  placeholder: 'Email', hide_label: true %>
+               <%= f.password_field :password,  placeholder: 'Password' , hide_label: true%>
+                <%= f.password_field :password_confirmation,  placeholder: 'Password confirmation', hide_label: true %>
+                <%= f.submit "Submit",  class: 'btn btn-warning' %>
+
+              <% end %>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sign-In</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+        <%= bootstrap_form_tag url: '/login', :html => {:autocomplete => "off"} do |f| %>
+        <%= f.text_field :email, placeholder: 'Email', hide_label: true, autofill: false %>
+        <%= f.password_field :password, placeholder: 'Password', hide_label: true, class: 'form-control'%>
+      <div class="modal-footer">
+        <%= submit_tag "Submit", class: 'btn btn-warning' %>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+  <%= yield %>
+
+
+
+
+<!-- </body> -->
 </html>
