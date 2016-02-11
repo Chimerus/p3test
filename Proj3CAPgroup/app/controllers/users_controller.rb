@@ -15,15 +15,6 @@ class UsersController < ApplicationController
     end
   end
 
-private
-
-  def user_params
-    params.require(:user).permit(:name, :email, :password)
-  end
-
-  def edit
-  end
-
   def eta
     # put your google maps key in your own env.
     @key = ENV['MAPS_KEY']
@@ -47,6 +38,15 @@ private
 # debugger
     render :eta
   end
+private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password)
+  end
+
+  def edit
+  end
+
 end
 
 
