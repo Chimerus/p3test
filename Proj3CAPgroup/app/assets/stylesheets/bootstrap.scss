@@ -4353,6 +4353,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-nav .open .dropdown-menu > li > a:focus {
     background-image: none;
   }
+  .navbar-brand {
+    float: none;
+    text-align: center;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
 }
 @media (min-width: 768px) {
   .navbar-nav {
@@ -6796,18 +6804,34 @@ body {
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
-body {
-  background: asset-data-url("background.jpeg") no-repeat center center fixed;
+body.homepage {
+  background: asset-data-url("background.jpeg") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 
-
-
 .margin200px {
   margin-top: 200px;
+}
+
+body.showpage {
+ background: none;
+ background-color: #327BD4;
+ height: 200%;
+}
+
+.location {
+  background-color:white;
+  height: 150px;
+  border: 1px solid black;
+  color: orange;
+  margin-bottom: 25px;
+}
+
+.smallfont {
+  font-size: 12px;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
