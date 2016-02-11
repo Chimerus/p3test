@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'users#index'
 
+  get '/eta' =>'users#eta'
+
   resources :users
 
   # Example of regular route:
