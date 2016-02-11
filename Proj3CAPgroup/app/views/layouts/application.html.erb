@@ -16,7 +16,7 @@
           <div class="container">
               <a class="navbar-brand" href="#">Commuter Assistance Program</a>
             <form class="navbar-form navbar-right">
-            <% if current_user['name'] %>
+            <% if current_user %>
               <h5>Welcome <%= current_user['name'] %> the time is now <%= Time.now.strftime("%I:%M %p") %>.</h5>
             <% else %>
             <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#signUp">

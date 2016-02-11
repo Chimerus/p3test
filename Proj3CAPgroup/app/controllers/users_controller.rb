@@ -15,15 +15,6 @@ class UsersController < ApplicationController
     end
   end
 
-private
-
-  def user_params
-    params.require(:user).permit(:name, :email, :password)
-  end
-
-  def edit
-  end
-
   def eta
     # put your google maps key in your own env.
     @key = ENV['MAPS_KEY']
@@ -34,11 +25,11 @@ private
     @destination = "1834 2nd Avenue, New York, NY"
     # set the transportation method, pull from db
     @ride = "transit"
-    # have to do this httparty hackaround 
+    # have to do this httparty hackaround
     # response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+@origin+'&destinations='+@destination+'&mode='+@ride+'&language=en-EN&key='+@key) <- distance matrix
     response = HTTParty.get('https://maps.googleapis.com/maps/api/directions/json?origin='+@origin+'&destination='+@destination+'&mode='+@ride+'&language=en-EN&key='+@key)
     # turns it useful
-    parsed_response = JSON.parse(response.body)  
+    parsed_response = JSON.parse(response.body)
     # debugger
     # parsed_response["rows"].first["elements"].first["duration"] gets text and value
     # @time=parsed_response["rows"].first["elements"].first["duration"]["text"] <- distance matrix
@@ -47,6 +38,16 @@ private
 # debugger
     render :eta
   end
+
+private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password)
+  end
+
+  def edit
+  end
+
 end
 
 
