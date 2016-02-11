@@ -9,7 +9,7 @@ User.create([
   {name: "Admin", password_digest: "password", email: "test@test.com", avatar: "http://www.ideaminetech.com/images/s_pic2.jpg" }
   ])  
 
-Destination.create([
+Location.create([
   {location_name: "Home!", address: "200 W 21st St", city: "New York", state: "NY", zip: 10011 , home: true , work: false , favorite: true , default_transport: "bicycling", user_id: 1},
   {location_name: "My Crib", address: "1507 York Ave", city: "New York", state: "NY", zip: 10075 , home: true , work: false , favorite: true , default_transport: "car", user_id: 2},
   {location_name: "Home", address: "71 Kissena Blvd", city: "Queens", state: "NY", zip: 11367 , home: true , work: false , favorite: true , default_transport: "transit", user_id: 3},
@@ -25,6 +25,6 @@ Destination.create([
   {location_name: "Liberty State Park", address: "1 Audrey Zapp Drive", city: "Jersey City", state: "NJ", zip: 07305 , home: false , work: false , favorite: true , default_transport: "car", user_id: 1},
   {location_name: "Union Square", address: "69 E 17th St", city: "New York", state: "NY", zip: 10003 , home: false , work: false , favorite: true , default_transport: "transit", user_id: 2},
   {location_name: "Empire State Building", address: "350 5th Ave", city: "New York", state: "NY", zip: 10118 , home: false , work: false , favorite: true , default_transport: "car", user_id: 3},
-  {location_name: "Freedom Tower", address: "One World Trade Center", city: "New York", state: "NY", zip: 10007 , home: false , work: false , favorite:  , default_transport: "transit", user_id: 4},
+  {location_name: "Freedom Tower", address: "One World Trade Center", city: "New York", state: "NY", zip: 10007 , home: false , work: false , favorite: true , default_transport: "transit", user_id: 4},
   {location_name: "Cornell University", address: "Cornell University", city: "Ithaca", state: "NY", zip: 14850, home: false , work: false , favorite: false , default_transport: "car", user_id: 3},
   ])  
