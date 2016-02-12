@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 		user = User.where(email: params[:email]).first
 		if user && user.authenticate(params[:password])
 		  cookies.permanent[:auth_token] = user.auth_token
-		 redirect_to '/'
+		 redirect_to '/eta'
 		else
 			flash.now.alert = "Invalid email or password"
 			redirect_to '/login'
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
 	def destroy 
 		cookies.delete(:auth_token)
-		redirect_to '/login' #:notice => "Logged out!"
+		redirect_to '/' #:notice => "Logged out!"
 
 	end
 end

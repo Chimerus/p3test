@@ -1295,10 +1295,18 @@ p {
   font-size: 16px;
   font-weight: 300;
   line-height: 1.4;
+  color: white;
+}
+.h1lead {
+  color: white;
 }
 @media (min-width: 768px) {
-  .lead {
+  p .lead {
     font-size: 21px;
+    color: white;
+  }
+  .h1lead {
+    color: white;
   }
 }
 small,
@@ -6829,7 +6837,7 @@ body.showpage {
   height: 150px;
   border: 1px solid black;
   color: black;
-  margin-bottom: 25px;
+  margin-bottom: 28px;
 }
 
 .smallfont {
@@ -6848,7 +6856,17 @@ body.showpage {
   margin-left: 5px;
 }
 
+// .plus {
+//   background-image: asset-data-url("plus.png");
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   background-size: 40%;
+// }
 
+.plus{
+  line-height:110px;
+  font-size:100px;
+}
 
 .user-profiles-list-basic{
     line-height: 1;
