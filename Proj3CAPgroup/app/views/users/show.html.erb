@@ -12,7 +12,7 @@
         @time=parsed_response["rows"].first["elements"].first["duration"]["text"]
         @eta=parsed_response["rows"].first["elements"].first["duration"]["value"]%>
 
-      <% if count == 1 %>
+      <% if count == 1 || count == 7%>
         <div class="col-lg-4">
           <div class="location">
            <h3><%= place.location_name %></h3>
