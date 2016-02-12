@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
 //= require bootstrap
 //= require jquery-ui
-//= require gmaps.js
+//= require gmaps
+//= require_tree .

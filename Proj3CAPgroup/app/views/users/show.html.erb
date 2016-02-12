@@ -6,7 +6,7 @@
     <% count = 1 %>
 
       <% @locations.each do |place| %>
-      <% full_location = place.address+place.city+place.state+place.zip.to_s %>
+      <% full_location = place.address %>
       <% response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+@origin+'&destinations='+full_location+'&mode='+place.default_transport+'&language=en-EN&key='+@key)
     parsed_response = JSON.parse(response.body)
         @time=parsed_response["rows"].first["elements"].first["duration"]["text"]
@@ -55,7 +55,6 @@
       </div>
 
     </div>
-  </body>
 <div class="modal fade" id="addLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -72,22 +71,26 @@
           <input type="text" class="form-control" placeholder="Street Address" aria-describedby="basic-addon2">
         </div>
          -->
-           <div id='input'>
+
+
+         <%= bootstrap_form_for(Location.new) do |f| %>
+            <%= f.text_field :location_name, autofocus: true, placeholder: 'Location', hide_label: true %>
+            <div id='input'>
+                 <%= f.text_field :address,  placeholder: 'Address', hide_label: true, id: "gmaps-input-address" %>
                  <br/>
                  <br/>
                  <div id='gmaps-error'></div>
            </div>
 
             <div id='gmaps-canvas'></div>
-         <%= bootstrap_form_for :location, :url => {:controller => "locations", :action => "create"} do |f| %>
-                 <%= f.text_field :location_name, autofocus: true, placeholder: 'Location', hide_label: true %>
-                 <%= f.text_field :address,  placeholder: 'Address', hide_label: true, id: "gmaps-input-address" %>
                    <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %>
                    <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %>
                    <%= f.radio_button :default_transport, 'driving', label: "Driving" %>
                    <%= f.radio_button :default_transport, 'public_Transit', label: "Public Transit" %>
                    <%= f.submit "Submit",  class: 'btn btn-warning' %>
-          <%end %>
+
+          <% end %>
     </div>
   </div>
 </div>
+</body>

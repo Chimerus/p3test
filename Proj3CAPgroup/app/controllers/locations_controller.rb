@@ -1,8 +1,8 @@
 class LocationsController < ApplicationController
   # protect_from_forgery with: :null_session
 	def index
-
-    end
+    puts "hellooooooo"
+  end
 
   # GET /location/1
 
@@ -23,7 +23,6 @@ class LocationsController < ApplicationController
   # POST /location
 
   def create
-  	binding.pry
     @location = Location.new(location_params)
      if @location.save
        redirect_to '/eta'
