@@ -21,7 +21,7 @@ Location.create([
   {location_name: "General Assembly", address: "10 East 21st Street", city: "New York", state: "NY", zip: 10010 , home: false , work: false, favorite: true , default_transport: "walking", user_id: 1},
   {location_name: "Phil's House", address: "200 W 21st St", city: "New York", state: "NY", zip: 10011 , home: false , work: false , favorite: true , default_transport: "transit", user_id: 2},
   {location_name: "Corner Deli", address: "1624 2nd Ave,", city: "New York", state: "NY", zip: 10028 , home: false , work: false , favorite: true , default_transport: "car", user_id: 3},
-  {location_name: "TwoBros Pizza", address: "601 Ave of the Americas #1", city: "New York", state: "NY", zip: 10011 , home:  false, work: false , favorite: false , default_transport: "walking", user_id: 4},
+  {location_name: "TwoBros Pizza", address: "601 Ave of the Americas", city: "New York", state: "NY", zip: 10011 , home:  false, work: false , favorite: false , default_transport: "walking", user_id: 4},
   {location_name: "Liberty State Park", address: "1 Audrey Zapp Drive", city: "Jersey City", state: "NJ", zip: 07305 , home: false , work: false , favorite: true , default_transport: "car", user_id: 1},
   {location_name: "Union Square", address: "69 E 17th St", city: "New York", state: "NY", zip: 10003 , home: false , work: false , favorite: true , default_transport: "transit", user_id: 2},
   {location_name: "Empire State Building", address: "350 5th Ave", city: "New York", state: "NY", zip: 10118 , home: false , work: false , favorite: true , default_transport: "car", user_id: 3},
