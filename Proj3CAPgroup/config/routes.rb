@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/eta' =>'users#show'
 
   resources :users
+   resources :locations
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
