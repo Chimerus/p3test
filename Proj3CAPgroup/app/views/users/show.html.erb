@@ -12,7 +12,7 @@
         @time=parsed_response["rows"].first["elements"].first["duration"]["text"]
         @eta=parsed_response["rows"].first["elements"].first["duration"]["value"]%>
 
-      <% if count == 1 %>
+      <% if count == 1 || count == 4 || count == 7 %>
         <div class="col-lg-4">
           <div class="location">
            <h3><%= place.location_name %></h3>
@@ -29,16 +29,6 @@
         </div>
       </div>
         <% count += 1 %>
-
-      <% elsif count %4 == 0 %>
-        <div class="col-lg-4">
-          <div class="location">
-           <h3><%= place.location_name %></h3>
-           <h1><%= @time %></h1>
-           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
-           </div>
-           
-      <% count += 1 %>
 
       <% else %>
       <div class="location">

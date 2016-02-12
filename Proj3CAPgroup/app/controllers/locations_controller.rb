@@ -23,7 +23,7 @@ class LocationsController < ApplicationController
   # POST /location
 
   def create
-  	binding.pry
+  	# binding.pry
     @location = Location.new(location_params)
      if @location.save
        redirect_to '/eta'
