@@ -1,9 +1,5 @@
-<h1>Login</h1>
+<div id='input'>
+      <input id='gmaps-input-address' placeholder='Start typing a place name...' type='text' />
+    </div>
 
-<%= bootstrap_form_tag  url: '/login' do %>
-
-  Email: <%= text_field_tag :email %>
-  Password: <%= password_field_tag :password %>
-  <%= submit_tag "Submit" %>
-
-<% end %>
+    <div id='gmaps-canvas'></div>
