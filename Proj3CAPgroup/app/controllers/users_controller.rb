@@ -38,6 +38,15 @@ class UsersController < ApplicationController
 # debugger
     render :eta
   end
+
+  def show
+    @key = ENV['MAPS_KEY']
+    # set the origin, pull from sara's geolocate when its up
+    # "40.740082199999996,-73.9897896" this format for gps coordinates, no space!
+    @origin = "1834 2nd Avenue, New York, NY"
+    @locations = Location.where("user_id = '#{current_user['id']}'")
+    render :show
+  end
 private
 
   def user_params

@@ -3,7 +3,55 @@
   <div class="container">
 
     <div class="row marketing centerrow">
-      <div class="col-lg-4">
+    <% count = 1 %>
+      
+      <% @locations.each do |place| %>
+      <% full_location = place.address+place.city+place.state+place.zip.to_s %>
+      <% response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+@origin+'&destinations='+full_location+'&mode='+place.default_transport+'&language=en-EN&key='+@key) 
+    parsed_response = JSON.parse(response.body)  
+        @time=parsed_response["rows"].first["elements"].first["duration"]["text"]
+        @eta=parsed_response["rows"].first["elements"].first["duration"]["value"]%>
+
+      <% if count == 1 %>
+        <div class="col-lg-4">
+          <div class="location">
+           <h3><%= place.location_name %></h3>
+           <h1><%= @time %></h1>
+           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize %></p>
+           </div>
+      <% count += 1 %>
+
+      <% elsif count %3 == 0 %>
+          <div class="location">
+          <h3><%= place.location_name %></h3>
+           <h1><%= @time %></h1>
+           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+        </div>
+      </div>
+        <% count += 1 %>
+
+      <% elsif count %4 == 0 %>
+        <div class="col-lg-4">
+          <div class="location">
+           <h3><%= place.location_name %></h3>
+           <h1><%= @time %></h1>
+           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+           </div>
+           
+      <% count += 1 %>
+
+      <% else %>
+      <div class="location">
+          <h3><%= place.location_name %></h3>
+           <h1><%= @time %></h1>
+           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+        </div>
+        <% count += 1 %>
+      <% end %>
+    <% end %>
+
+
+     <!--  <div class="col-lg-4">
         <div class="location">
           <h3>Work</h3>
           <h1>25<span class="smallfont">min</span></h1>
@@ -51,7 +99,8 @@
           <h3>Work</h3>
           <h1>25<span class="smallfont">min</span></h1>
           <p>ETA at 6:07pm</p>
-        </div>
+        </div> -->
+
         <a href="#" data-toggle="modal" data-target="#addLocation" class="btn btn-primary location width33">Add Location</a>
       </div>
 
