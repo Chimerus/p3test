@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
 	def destroy 
 		cookies.delete(:auth_token)
-		redirect_to '/login' #:notice => "Logged out!"
+		redirect_to '/' #:notice => "Logged out!"
 
 	end
 end

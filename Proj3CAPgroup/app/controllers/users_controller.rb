@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id
      # string = '/users/' + user.id.to_s +'/show'
-     redirect_to  '/'
+     render :show
     else
       redirect_to '/'
     end
