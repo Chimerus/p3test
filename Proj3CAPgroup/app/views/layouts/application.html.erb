@@ -14,7 +14,7 @@
 
         <nav class="navbar navbar-inverse navbar-static-top">
           <div class="container">
-              <a class="navbar-brand" href="#">Commuter Assistance Program</a>
+              <a class="navbar-brand" href="/logout">Commuter Assistance Program</a>
            <form class="navbar-form navbar-right">
             <% if current_user %>
               <h5>Welcome <%= current_user['name'] %> the time is now <%= Time.now.strftime("%I:%M %p") %>.</h5>
