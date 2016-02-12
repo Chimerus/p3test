@@ -73,14 +73,24 @@
           <input type="text" class="form-control" placeholder="Street Address" aria-describedby="basic-addon2">
         </div>
          -->
+         <%= bootstrap_form_for :location, :url => {:controller => "locations", :action => "create"} do |f| %>
+                   <%= f.text_field :location_name, autofocus: true, placeholder: 'Location', hide_label: true %>
            <div id='input'>
-                 <input id='gmaps-input-address' placeholder='Start typing a place name...' type='text' />
+                   <%= f.text_field :address,  placeholder: 'Address', hide_label: true, id: "gmaps-input-address" %>
                  <br/>
                  <br/>
                  <div id='gmaps-error'></div>
            </div>
 
             <div id='gmaps-canvas'></div>
+                   <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %>
+                   <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %>
+                   <%= f.radio_button :default_transport, 'driving', label: "Driving" %>
+                   <%= f.radio_button :default_transport, 'public_Transit', label: "Public Transit" %>
+                   <%= f.submit "Submit",  class: 'btn btn-warning' %>
+
+          <%end %>
+                 <input id='gmaps-input-address' placeholder='Start typing a place name...' type='text' />
 
 
         <div class="margin5pxleft">
