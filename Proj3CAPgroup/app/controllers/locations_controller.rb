@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-
+  # protect_from_forgery with: :null_session
 	def index
      
     end
@@ -23,7 +23,8 @@ class LocationsController < ApplicationController
   # POST /location
 
   def create
-    @location = Location.new(Location_params)
+  	binding.pry
+    @location = Location.new(location_params)
      if @location.save
        redirect_to '/eta'
      else
@@ -55,7 +56,7 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-     params.require(:location).permit(:location_name, :address, :city, :state, :zip, :home, :work, :favorite, :default_transport, :user_id)
+    params.require(:location).permit(:location_name, :address,  :default_transport, :user_id).merge(user_id: current_user['id]'])
     end
 end
 

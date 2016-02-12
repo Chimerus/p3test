@@ -57,63 +57,26 @@
 <div class="modal fade" id="addLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+     
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Add Location</h4>
       </div>
+
+
       <div class="modal-body">
-        <div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Destination Name:</span>
-          <input type="text" class="form-control" placeholder="Destination Name" aria-describedby="basic-addon1">
-        </div>
-        <div class="input-group">
-          <span class="input-group-addon" id="basic-addon2">Street Address:</span>
-          <input type="text" class="form-control" placeholder="Street Address" aria-describedby="basic-addon2">
-        </div>
-        <!-- <div class="input-group">
-          <span class="input-group-addon" id="basic-addon2">City:</span>
-          <input type="text" class="form-control" placeholder="City" aria-describedby="basic-addon2">
-        </div>
-        <div class="input-group">
-          <span class="input-group-addon" id="basic-addon2">State:</span>
-          <input type="text" class="form-control" placeholder="State" aria-describedby="basic-addon2">
-        </div>
-        <div class="input-group">
-          <span class="input-group-addon" id="basic-addon2">Zip:</span>
-          <input type="text" class="form-control" placeholder="Zip" aria-describedby="basic-addon2">
-        </div> -->
-        <div class="margin5pxleft">
-        <!-- <form role="form"> -->
-            <div class="radio-inline">
-              <label>
-                <input type="radio" name="transportationOptions" id="Walking" value="transport1">
-                Walk
-              </label>
-            </div>
-            <div class="radio-inline">
-              <label>
-                <input type="radio" name="transportationOptions" id="Bicycling" value="transport2">
-                Bike
-              </label>
-            </div>
-            <div class="radio-inline">
-              <label>
-                <input type="radio" name="transportationOptions" id="Driving" value="transport3">
-                Drive
-              </label>
-            </div>
-            <div class="radio-inline">
-              <label>
-                <input type="radio" name="transportationOptions" id="Public_Transit" value="transport4">
-                Public Transit
-              </label>
-            </div>
-          <!-- </form> -->
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Generate ETA</button>
-      </div>
+     <%= bootstrap_form_for :location, :url => {:controller => "locations", :action => "create"} do |f| %>
+
+           <%= f.text_field :location_name,autofocus: true, placeholder: 'Location', hide_label: true %>
+           <%= f.text_field :address,  placeholder: 'Address', hide_label: true %>
+           <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %>
+           <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %>
+           <%= f.radio_button :default_transport, 'driving', label: "Driving" %>
+           <%= f.radio_button :default_transport, 'public_Transit', label: "Public Transit" %>
+           <%= f.submit "Submit",  class: 'btn btn-warning' %>
+        
+      <%end %>
+
     </div>
   </div>
 </div>
