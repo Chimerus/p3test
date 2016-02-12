@@ -13,7 +13,7 @@ class LocationsController < ApplicationController
 
   # GET /location/new
   def new
-    @band = Location.new
+   
   end
 
   # GET /location/1/edit
@@ -23,7 +23,13 @@ class LocationsController < ApplicationController
   # POST /location
 
   def create
-    @locations = Location.new(Location_params)
+    @location = Location.new(Location_params)
+     if @location.save
+       redirect_to '/eta'
+     else
+      redirect_to '/edit'
+    end
+ 
 
   end
 
