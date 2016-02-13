@@ -19,6 +19,7 @@
            <h1><%= @time %></h1>
            <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize %></p>
              <a href="/locations/<%=place.id.to_s%>/edit">edit</a>
+             <a href="/locations/<%=place.id.to_s%>/delete">delete</a>
            </div>
       <% count += 1 %>
 
@@ -28,6 +29,7 @@
            <h1><%= @time %></h1>
            <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
             <a href="/locations/<%=place.id.to_s%>/edit">edit</a>
+            <a href="/locations/<%=place.id.to_s%>/delete">delete</a>
         </div>
       </div>
         <% count += 1 %>
@@ -38,6 +40,7 @@
            <h1><%= @time %></h1>
            <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
           <a href="/locations/<%=place.id.to_s%>/edit">edit</a>
+          <a href="/locations/<%=place.id.to_s%>/delete">delete</a>
 
         </div>
         <% count += 1 %>

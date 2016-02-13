@@ -20,6 +20,9 @@ class LocationsController < ApplicationController
   def edit
      @location = Location.find(params[:id])
   end
+  def delete
+    @location = Location.find(params[:id])
+  end
 
   # POST /location
 
@@ -54,8 +57,11 @@ class LocationsController < ApplicationController
   # DELETE /location/1
   # DELETE /location/1.json
   def destroy
-  	@location = Location.find(params[:id])
-    @Location.destroy
+    id = params[:id].to_i
+  	@location = Location.find(id)
+    binding.pry
+    @location.destroy
+    redirect_to '/eta'
     
   end
 
