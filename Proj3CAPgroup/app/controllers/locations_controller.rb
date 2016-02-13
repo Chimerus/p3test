@@ -13,7 +13,6 @@ class LocationsController < ApplicationController
 
   # GET /location/new
   def new
-   
   end
 
   # GET /location/1/edit
@@ -23,21 +22,17 @@ class LocationsController < ApplicationController
   # POST /location
 
   def create
-  	# binding.pry
     @location = Location.new(location_params)
      if @location.save
        redirect_to '/eta'
      else
       redirect_to '/edit'
     end
- 
-
   end
 
   # PATCH/PUT /location/1
   # PATCH/PUT /location/1.json
   def update
-    
   end
 
   # DELETE /location/1
@@ -45,7 +40,6 @@ class LocationsController < ApplicationController
   def destroy
   	@location = Location.find(params[:id])
     @Location.destroy
-    
   end
 
   private
@@ -59,14 +53,3 @@ class LocationsController < ApplicationController
     params.require(:location).permit(:location_name, :address,  :default_transport, :user_id).merge(user_id: current_user.id)
     end
 end
-
-  
-
-
-
-
-
-
-
-
-
