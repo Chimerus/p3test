@@ -6,14 +6,14 @@
 
 
 
-<%=form_for(@location, url: location_path(@location), html: {method: "patch"}) do |f| %>
- 
-         <span>Location</span>  <%= f.text_field :location_name, autofocus: true, placeholder: 'Location', hide_label: true %><br>
-          <span>Address</span> <%= f.text_field :address,  placeholder: 'Address', hide_label: true, id: "gmaps-input-address" %><br>
-         <span>Walking</span>  <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %><br>
-         <samp>Bicycling</samp>  <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %><br>
-        <span>Driving</span>   <%= f.radio_button :default_transport, 'driving', label: "Driving" %><br>
-       <span>Public Transit</span>    <%= f.radio_button :default_transport, 'public_Transit', label: "Public Transit" %><br>
+<%=bootstrap_form_for(@location, url: location_path(@location), html: {method: "patch"}) do |f| %>
+    
+           <%= f.text_field :location_name, autofocus: true, placeholder: 'Location', hide_label: true %><br>
+           <%= f.text_field :address,  placeholder: 'Address', hide_label: true, id: "gmaps-input-address", rows: "5" %><br>
+         <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %>
+        <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %>
+        <%= f.radio_button :default_transport, 'driving', label: "Driving" %>
+         <%= f.radio_button :default_transport, 'public_Transit', label: "Public Transit" %>
            <%= f.submit "Submit",  class: 'btn btn-warning' %><br>
         
 <% end %>
