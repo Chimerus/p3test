@@ -38,7 +38,7 @@ class LocationsController < ApplicationController
   # PATCH/PUT /location/1
   # PATCH/PUT /location/1.json
   def update
-   # binding.pry
+
     location = Location.find(params[:id])
     if location.update_attributes(location_params)
       #flash[:notice] = "Your location successfullu updated"
