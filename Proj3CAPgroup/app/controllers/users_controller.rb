@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
      session[:user_id] = user.id
+      flash[:notice] = "Thanks for siging up!"
 
       redirect_to '/'
     else

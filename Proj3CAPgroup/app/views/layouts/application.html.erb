@@ -75,7 +75,18 @@
 </div>
 </div>
 </div>
-
+<div class="container">
+   <% flash.each do |key, value| %>
+  <div class="alert alert-info">
+    <a href="#" data-dismiss="alert" class="close">×</a>
+    <ul  style="list-style: none ;">
+      <li style= "list_style: none;">
+        <%= value %>
+      </li>
+    </ul>
+  </div>
+<% end %>
+</div>
 
   <%= yield %>
 

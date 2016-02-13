@@ -44,7 +44,7 @@ class LocationsController < ApplicationController
 
     location = Location.find(params[:id])
     if location.update_attributes(location_params)
-      #flash[:notice] = "Your location successfullu updated"
+      flash[:notice] = "Your location successfullu updated"
       redirect_to '/eta'
     else
      redirect_to '/edit'
@@ -61,7 +61,9 @@ class LocationsController < ApplicationController
   	@location = Location.find(id)
     binding.pry
     @location.destroy
+     flash[:notice] = "Your location successfullu updated"
     redirect_to '/eta'
+     flash[:notice] = "Your location successfullu deleted"
     
   end
 
