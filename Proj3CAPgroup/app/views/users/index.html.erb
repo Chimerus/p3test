@@ -1,0 +1,38 @@
+<body class="homepage">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 text-center bootstrap-welcome margin200px">
+      <h1 class="h1lead">Welcome to the Commuter Assistance Program</h1>
+      <p class="lead">Want a personalized dashboard of your favorite places?</p>
+      <a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Sign-Up Now!
+      </a>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sign-Up!</h4>
+      </div>
+
+      <div class="modal-body">
+          <div class="form-group">
+            <%= bootstrap_form_for :user, :html => { :class => "class_name_here"}, url: '/users' do |f| %>
+
+             <%= f.text_field :name,autofocus: true, placeholder: 'Name', hide_label: true %>
+           <%= f.text_field :email,  placeholder: 'Email', hide_label: true %>
+           <%= f.password_field :password,  placeholder: 'Password' , hide_label: true%>
+            <%= f.password_field :password_confirmation,  placeholder: 'Password confirmation', hide_label: true %>
+            <%= f.submit "Submit",  class: 'btn btn-warning' %>
+
+          <% end %>
+
+    </div>
+
+  </div>
+</div>
+</body>

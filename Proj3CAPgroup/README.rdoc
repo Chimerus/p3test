@@ -1,5 +1,23 @@
 == README
 
+Ruby version 4.2.5.1
+
+CAP is the Commuter Assistance Program
+
+It is a homepage that gives you a list of Estimated Time to Arrival(ETAs) to a list of your favorite locations
+
+Origin locations are calculated using Google Maps Geolocation so are estimates. 
+
+Features:
+Automatically determine the origin location, ETA to list of locations pulled from database
+
+Save list of destinations
+
+On new entry, autocompletion of address with small map to help determine location.
+
+Login also has cookies enabled so that the user does not have to log back in. 
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
@@ -20,9 +38,3 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
