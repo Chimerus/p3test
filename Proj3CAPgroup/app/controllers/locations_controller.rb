@@ -6,9 +6,9 @@ class LocationsController < ApplicationController
   # GET /location/1
 
   def show
-    @id = params[:id]
-    @video = Location.find(params[:id])
-  end
+    @location = Location.find(params[:id])
+    # binding.pry
+  end 
 
   # GET /location/new
   def new

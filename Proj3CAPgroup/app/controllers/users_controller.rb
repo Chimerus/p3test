@@ -11,15 +11,13 @@ class UsersController < ApplicationController
     else
       render :index
     end
-
   end
 
   def create
     user = User.new(user_params)
     if user.save
-      session[:user_id] = user.id
-     # string = '/users/' + user.id.to_s +'/show'
-      redirect_to '/'
+      cookies.permanent[:auth_token] = user.auth_token
+      redirect_to '/eta'
     else
       redirect_to '/'
     end
