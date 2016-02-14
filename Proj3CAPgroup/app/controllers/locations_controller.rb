@@ -1,20 +1,15 @@
 class LocationsController < ApplicationController
-  # protect_from_forgery with: :null_session
-	def index
-  end
 
-  # GET /location/1
+  def index
+  end
 
   def show
     @location = Location.find(params[:id])
-    # binding.pry
   end 
 
-  # GET /location/new
   def new
   end
 
-  # GET /location/1/edit
   def edit
      @location = Location.find(params[:id])
   end
@@ -22,8 +17,6 @@ class LocationsController < ApplicationController
   def delete
     @location = Location.find(params[:id])
   end
-
-  # POST /location
 
   def create
     @location = Location.new(location_params)
@@ -34,8 +27,6 @@ class LocationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /location/1
-  # PATCH/PUT /location/1.json
   def update
     location = Location.find(params[:id])
     if location.update_attributes(location_params)
@@ -46,12 +37,9 @@ class LocationsController < ApplicationController
     end
   end
 
-  # DELETE /location/1
-  # DELETE /location/1.json
   def destroy
   	@location = Location.find(params[:id])
     @Location.destroy
-
     flash[:notice] = "Your location successfully updated"
       redirect_to '/eta'
     flash[:notice] = "Your location successfully deleted"
@@ -59,7 +47,6 @@ class LocationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_location
       @location = Location.find(params[:id])
     end
