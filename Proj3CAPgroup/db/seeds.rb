@@ -3,10 +3,10 @@
 #
 
 User.create([
-  {name: "Phil", password: "password", email: "a@gmail.com", avatar: "" },
-  {name: "John", password: "password", email: "test@gmail.com", avatar: "https://upload.wikimedia.org/wikipedia/en/5/55/Xbox_NXE_avatar.png" },
-  {name: "Sir Robert Testingson the Third Esqire", password: "password", email: "pippipcheeriohuzzzah@veryverylongname.com", avatar: "http://ecx.images-amazon.com/images/I/51I6k%2BNGMTL._SY300_.jpg" },
-  {name: "Admin", password: "password", email: "test@test.com", avatar: "http://www.ideaminetech.com/images/s_pic2.jpg" }
+  {name: "Phil", password: "password", email: "a@gmail.com" },
+  {name: "John", password: "password", email: "test@gmail.com" },
+  {name: "Sir Robert Testingson the Third Esqire", password: "password", email: "pippipcheeriohuzzzah@veryverylongname.com" },
+  {name: "Admin", password: "password", email: "test@test.com" }
   ])  
 
 Location.create([
