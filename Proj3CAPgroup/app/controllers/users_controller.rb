@@ -1,4 +1,5 @@
 require 'httparty'
+require 'uri'
 
 class UsersController < ApplicationController
 
@@ -13,19 +14,32 @@ class UsersController < ApplicationController
   def new
   end
 
+  def index
+    if cookies.permanent[:auth_token]
+      redirect_to '/eta'
+    else
+      render :index
+    end
+  end
+
   def create
     user = User.new(user_params)
     if user.save
+<<<<<<< HEAD
      session[:user_id] = user.id
       flash[:notice] = "Thanks for siging up!"
 
       redirect_to '/'
+=======
+      cookies.permanent[:auth_token] = user.auth_token
+      redirect_to '/eta'
+>>>>>>> a1d3ac917665a4f58bfb1d4da2a4b31d4b7a9c12
     else
       redirect_to '/'
     end
   end
 
-  def show
+  def eta
     @key = ENV['MAPS_KEY']
     # get their current location - google locate
     response = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+@key)
@@ -36,7 +50,7 @@ class UsersController < ApplicationController
       @origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
       @locations = Location.where("user_id = '#{current_user['id']}'")
      end 
-    render :show
+    render :eta
   end
 private
 

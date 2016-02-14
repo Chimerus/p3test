@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'users#index'
 
-  get '/eta' =>'users#show'
+  get '/eta' =>'users#eta'
 
   resources :users
    resources :locations
