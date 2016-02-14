@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       cookies.permanent[:auth_token] = user.auth_token
+      flash[:notice] = "Thanks for siging up!"
       redirect_to '/eta'
     else
       redirect_to '/'
