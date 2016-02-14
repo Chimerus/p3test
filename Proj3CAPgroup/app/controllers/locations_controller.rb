@@ -15,7 +15,7 @@ class LocationsController < ApplicationController
   end
 
   def delete
-    @location = Location.find(params[:id])
+
   end
 
   def create
@@ -38,12 +38,11 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-  	@location = Location.find(params[:id])
-    @Location.destroy
-    flash[:notice] = "Your location successfully updated"
+    @location = Location.find(params[:id])
+    if @location.destroy
+      flash[:notice] = "Your location successfully deleted"
       redirect_to '/eta'
-    flash[:notice] = "Your location successfully deleted"
-      redirect_to '/eta'
+    end
   end
 
   private
