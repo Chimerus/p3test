@@ -2,14 +2,24 @@ require 'httparty'
 require 'uri'
 
 class UsersController < ApplicationController
+
+  def index
+    if current_user
+      redirect_to '/eta'
+    else
+      render :index
+    end
+    
+  end
   def new
   end
 
   def create
     user = User.new(user_params)
     if user.save
-      session[:user_id] = user.id
-     # string = '/users/' + user.id.to_s +'/show'
+     session[:user_id] = user.id
+      flash[:notice] = "Thanks for siging up!"
+
       redirect_to '/'
     else
       redirect_to '/'

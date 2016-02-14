@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
+  get '/locations/:id/delete' => 'locations#delete'
 
 
   # Example of regular route:
