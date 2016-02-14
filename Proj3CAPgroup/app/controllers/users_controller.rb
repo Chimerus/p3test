@@ -25,6 +25,7 @@ class UsersController < ApplicationController
 
   def eta
     @key = ENV['MAPS_KEY']
+    binding.pry
     # get their current location - google locate
     response = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+@key)
     if response.code != 200 
