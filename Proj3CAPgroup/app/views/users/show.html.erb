@@ -1,54 +1,57 @@
 <body class="showpage">
 
+<div class="navbar-wrapper">
+  <div class="container">
+
     <div class="row marketing centerrow">
-      <div class="col-lg-4">
     <% count = 1 %>
-    <% @locations.each do |place| %>
-    <% uri = URI.encode('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+@origin+'&destinations='+place.address+'&mode='+place.default_transport+'&language=en-EN&key='+@key) %>
-      <% response = HTTParty.get(uri)
-        parsed_response = JSON.parse(response.body)
+
+      <% @locations.each do |place| %>
+      <% full_location = place.address %>
+      <% response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+@origin+'&destinations='+full_location+'&mode='+place.default_transport+'&language=en-EN&key='+@key)
+    parsed_response = JSON.parse(response.body)
         @time=parsed_response["rows"].first["elements"].first["duration"]["text"]
         @eta=parsed_response["rows"].first["elements"].first["duration"]["value"]%>
 
-      <% if count == 4 || count == 7 %>
-          <a href="/locations/<%= place.id %>">
+      <% if count == 1 %>
+        <div class="col-lg-4">
           <div class="location">
            <h3><%= place.location_name %></h3>
            <h1><%= @time %></h1>
            <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize %></p>
-          </div></a>
+          </div>
       <% count += 1 %>
 
-
       <% elsif count %3 == 0 %>
-          <a href="/locations/<%= place.id %>">
           <div class="location">
           <h3><%= place.location_name %></h3>
            <h1><%= @time %></h1>
            <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
-          </div></a>
         </div>
-        <div class="col-lg-4">
-      <% count += 1 %>
+      </div>
+        <% count += 1 %>
 
       <% elsif count %4 == 0 %>
-          <a href="/locations/<%= place.id %>">
+        <div class="col-lg-4">
           <div class="location">
            <h3><%= place.location_name %></h3>
            <h1><%= @time %></h1>
            <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
-          </div></a>
-          <% count += 1 %>
+           </div>
+
+      <% count += 1 %>
 
       <% else %>
-      <a href="/locations/<%= place.id %>"><div class="location">
+      <div class="location">
           <h3><%= place.location_name %></h3>
            <h1><%= @time %></h1>
            <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
-        </div></a>
+        </div>
         <% count += 1 %>
       <% end %>
     <% end %>
+  <!-- </div> -->
+
         <a href="#" data-toggle="modal" data-target="#addLocation" class="btn btn-primary location width33 plus">+</a>
       </div>
 
@@ -62,7 +65,13 @@
         <h4 class="modal-title" id="myModalLabel">Add Location</h4>
       </div>
 
+
       <div class="modal-body">
+        <!-- <div class="input-group">
+          <span class="input-group-addon" id="basic-addon2">Street Address:</span>
+          <input type="text" class="form-control" placeholder="Street Address" aria-describedby="basic-addon2">
+        </div>
+         -->
 
          <%= bootstrap_form_for(Location.new) do |f| %>
             <%= f.text_field :location_name, autofocus: true, placeholder: 'Location', hide_label: true %>

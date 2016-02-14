@@ -8,7 +8,7 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
     # binding.pry
-  end 
+  end
 
   # GET /location/new
   def new
@@ -20,7 +20,7 @@ class LocationsController < ApplicationController
   end
 
   def delete
-    @location = Location.find(params[:id])
+
   end
 
   # POST /location
@@ -49,13 +49,11 @@ class LocationsController < ApplicationController
   # DELETE /location/1
   # DELETE /location/1.json
   def destroy
-  	@location = Location.find(params[:id])
-    @Location.destroy
-
-    flash[:notice] = "Your location successfully updated"
+    @location = Location.find(params[:id])
+    if @location.destroy
+      flash[:notice] = "Your location successfully deleted"
       redirect_to '/eta'
-    flash[:notice] = "Your location successfully deleted"
-      redirect_to '/eta'
+    end
   end
 
   private
