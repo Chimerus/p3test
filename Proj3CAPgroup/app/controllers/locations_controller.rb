@@ -1,8 +1,7 @@
 class LocationsController < ApplicationController
   # protect_from_forgery with: :null_session
 	def index
-     
-    end
+  end
 
   # GET /location/1
 
@@ -17,6 +16,11 @@ class LocationsController < ApplicationController
 
   # GET /location/1/edit
   def edit
+     @location = Location.find(params[:id])
+  end
+
+  def delete
+    @location = Location.find(params[:id])
   end
 
   # POST /location
@@ -33,6 +37,13 @@ class LocationsController < ApplicationController
   # PATCH/PUT /location/1
   # PATCH/PUT /location/1.json
   def update
+    location = Location.find(params[:id])
+    if location.update_attributes(location_params)
+      flash[:notice] = "Your location successfully updated"
+      redirect_to '/eta'
+    else
+     redirect_to '/edit'
+    end
   end
 
   # DELETE /location/1
@@ -40,6 +51,11 @@ class LocationsController < ApplicationController
   def destroy
   	@location = Location.find(params[:id])
     @Location.destroy
+
+    flash[:notice] = "Your location successfully updated"
+      redirect_to '/eta'
+    flash[:notice] = "Your location successfully deleted"
+      redirect_to '/eta'
   end
 
   private

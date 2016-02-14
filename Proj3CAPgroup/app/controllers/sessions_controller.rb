@@ -9,13 +9,14 @@ class SessionsController < ApplicationController
 		  cookies.permanent[:auth_token] = user.auth_token
 		 redirect_to '/eta'
 		else
-			flash.now.alert = "Invalid email or password"
-			redirect_to '/login'
+			flash[:notice] = "Invalid email or password"
+			redirect_to '/'
 		end
 	end
 
 	def destroy 
 		cookies.delete(:auth_token)
+		flash[:notice] = "Successfully logged out!"
 		redirect_to '/' #:notice => "Logged out!"
 
 	end

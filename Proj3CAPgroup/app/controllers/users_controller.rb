@@ -5,6 +5,15 @@ class UsersController < ApplicationController
   def new
   end
 
+  def index
+    if cookies.permanent[:auth_token]
+      redirect_to '/eta'
+    else
+      render :index
+    end
+
+  end
+
   def create
     user = User.new(user_params)
     if user.save
@@ -16,7 +25,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
+  def eta
     @key = ENV['MAPS_KEY']
     # get their current location - google locate
     response = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+@key)
@@ -27,7 +36,7 @@ class UsersController < ApplicationController
       @origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
       @locations = Location.where("user_id = '#{current_user['id']}'")
      end 
-    render :show
+    render :eta
   end
 private
 
