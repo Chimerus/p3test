@@ -1,7 +1,5 @@
 <body class="showpage">
 
-  <!-- <div class="container"> -->
-
     <div class="row marketing centerrow">
     <% count = 1 %>
     <% @locations.each do |place| %>
@@ -47,8 +45,7 @@
         <% count += 1 %>
       <% end %>
     <% end %>
-<!-- deleted div here -->
-
+    
         <a href="#" data-toggle="modal" data-target="#addLocation" class="btn btn-primary location width33 plus">+</a>
       </div>
 
@@ -65,7 +62,7 @@
       <div class="modal-body">
 
          <%= bootstrap_form_for(Location.new) do |f| %>
-            <%= f.text_field :location_name, autofocus: true, placeholder: 'Location', hide_label: true %>
+            <%= f.text_field :location_name, autofocus: true, placeholder: 'Name of location', hide_label: true %>
             <div id='input'>
                  <%= f.text_field :address,  placeholder: 'Address', hide_label: true, id: "gmaps-input-address" %>
                  <br/>
