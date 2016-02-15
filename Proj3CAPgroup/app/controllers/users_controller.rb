@@ -20,8 +20,15 @@ class UsersController < ApplicationController
       flash[:notice] = "Thanks for siging up!"
       redirect_to '/eta'
     else
-       flash[:notice] = "invalid email!"
+      email = User.where(email: params['user']['email']).first
+      #
+       if email 
+        flash[:notice] = "The email you entered has already been taken"
+        redirect_to '/'
+      else
+       flash[:notice] = "invalid email"
       redirect_to '/'
+     end
     end
   end
 
