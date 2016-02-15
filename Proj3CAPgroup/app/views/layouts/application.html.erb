@@ -20,7 +20,7 @@
           <a class="navbar-brand" href="/logout">Commuter Assistance Program</a>
           <div class="navbar-form navbar-right">
             <% if current_user %>
-            <h5>Welcome <%= current_user['name'] %> the time is now <%= Time.now.strftime("%I:%M %p") %>.</h5>
+            <h5>Welcome  <a href="/users/<%= current_user['id'].to_s %>/edit "><%= current_user['name'] %> </a> the time is now <%= Time.now.strftime("%I:%M %p") %>.</h5>
             <% else %>
             <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#signUp">
               Sign-Up Now
@@ -32,7 +32,7 @@
       </nav>
       <div class="container">
    <% flash.each do |key, value| %>
-  <div style="margin-right: 26px;" class="alert alert-info">
+  <div style="margin-right: 26px; " class="alert alert-info">
    <a href="#" data-dismiss="alert" class="close">×</a>
      <ul  style="list-style: none ;">
        <li style= "list_style: none;">

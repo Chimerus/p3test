@@ -14,11 +14,10 @@
 
                 
 
-                <a href=""><%=current_user['name']%></a>
-                <span>:Email</span><p><%=current_user['email']%></p>
-                <span>Home Location:</span>
-                <span>Work Location:</span>
-                <span>Preferred Method of Transport:</span>
+                 <span><p><%=current_user['name']%></p></span>
+                <span><p><%=current_user['email']%>
+                <span>Home Location: <%=current_user.locations.first.address%></span>
+                <span>Work Location: <%=current_user.locations.second.address%></span>
                 
                  </p>
 
