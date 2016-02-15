@@ -25,6 +25,10 @@ class UsersController < ApplicationController
        if email 
         flash[:notice] = "The email you entered has already been taken"
         redirect_to '/'
+      elsif params['user']['password'].length < 6
+          flash[:notice] = "Password is too short"
+       redirect_to '/'
+          
       else
        flash[:notice] = "invalid email"
       redirect_to '/'

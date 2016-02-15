@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
 	has_secure_password
 	validates :email, presence: true, uniqueness: {case_sensitive: false}
 	validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
+	validates :password, :presence => true,
+                       :confirmation => true,
+                       :length => {:within => 6..40}
+                       
 	before_create {generate_token(:auth_token)}
 
 
