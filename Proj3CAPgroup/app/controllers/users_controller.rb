@@ -4,6 +4,8 @@ require 'uri'
 class UsersController < ApplicationController
   def new
   end
+  def edit
+  end
 
   def index
     if cookies.permanent[:auth_token]
@@ -11,6 +13,22 @@ class UsersController < ApplicationController
     else
       render :index
     end
+  end
+
+  def update
+   
+    id = params[:id]
+    user = User.find(id)
+     binding.pry
+    if user.update_attributes(user_params)
+      flash[:notic] = "your account was successfully updated "
+      redirect_to "/eta"
+    else
+       flash[:notic] = "Error  your account was not updated"
+       redirect_to "/users/#{user.id}/edit"
+     end
+      
+
   end
 
   def create
@@ -21,17 +39,15 @@ class UsersController < ApplicationController
       redirect_to '/eta'
     else
       email = User.where(email: params['user']['email']).first
-      #
        if email 
         flash[:notice] = "The email you entered has already been taken"
-        redirect_to '/'
-      elsif params['user']['password'].length < 6
+         redirect_to '/'
+        elsif params['user']['password'].length < 6
           flash[:notice] = "Password is too short"
-       redirect_to '/'
-          
-      else
-       flash[:notice] = "invalid email"
-      redirect_to '/'
+          redirect_to '/'          
+        else
+        flash[:notice] = "invalid email"
+        redirect_to '/'
      end
     end
   end
@@ -56,8 +72,7 @@ private
     params.require(:user).permit(:name, :email, :password)
   end
 
-  def edit
-  end
+  
 
 end
 
