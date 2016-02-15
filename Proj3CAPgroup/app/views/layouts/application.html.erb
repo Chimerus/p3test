@@ -15,10 +15,18 @@
   <div class="navbar-wrapper">
     <div class="container">
 
+<<<<<<< HEAD
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+              <a class="navbar-brand" href="/logout">Commuter Assistance Program</a>
+
+           <form class="navbar-form navbar-right">
+=======
       <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
           <a class="navbar-brand" href="/logout">Commuter Assistance Program</a>
           <div class="navbar-form navbar-right">
+>>>>>>> a1d3ac917665a4f58bfb1d4da2a4b31d4b7a9c12
             <% if current_user %>
             <h5>Welcome <%= current_user['name'] %> the time is now <%= Time.now.strftime("%I:%M %p") %>.</h5>
             <% else %>
@@ -79,6 +87,29 @@
       </div>
     </div>
   </div>
+<<<<<<< HEAD
+</div>
+</div>
+</div>
+<div class="container">
+   <% flash.each do |key, value| %>
+  <div class="alert alert-info">
+    <a href="#" data-dismiss="alert" class="close">×</a>
+    <ul  style="list-style: none ;">
+      <li style= "list_style: none;">
+        <%= value %>
+      </li>
+    </ul>
+  </div>
+<% end %>
+</div>
+
+  <%= yield %>
+
+
+
+=======
+>>>>>>> a1d3ac917665a4f58bfb1d4da2a4b31d4b7a9c12
 
   </body>
 </html>

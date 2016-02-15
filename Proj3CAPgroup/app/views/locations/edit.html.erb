@@ -1,5 +1,9 @@
-<ul class="user-profiles-list-basic">
+<div class="container">
+<div class="jumbotron">
+  
+    <div class="form-group">
 
+<<<<<<< HEAD
             <p>
                 <a href=""><%=current_user['name']%>'s Locations</a>
             <%= bootstrap_form_for :location, :html => { :class => "location"}, url: '/locations' do |f| %>
@@ -19,6 +23,26 @@
             <% end %>
 
             </p>
+=======
 
-        </li>
-</ul>
+
+
+<%=bootstrap_form_for(@location, url: location_path(@location), html: {method: "patch"}) do |f| %>
+    
+           <%= f.text_field :location_name, autofocus: true, placeholder: 'Location', hide_label: true %><br>
+           <%= f.text_field :address,  placeholder: 'Address', hide_label: true, id: "gmaps-input-address", rows: "5" %><br>
+         <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %>
+        <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %>
+        <%= f.radio_button :default_transport, 'driving', label: "Driving" %>
+         <%= f.radio_button :default_transport, 'public Transit', label: "Public Transit" %>
+           <%= f.submit "Submit",  class: 'btn btn-warning' %><br>
+        
+<% end %>
+
+</div>
+</div>
+</div>
+
+
+>>>>>>> cccd62f796d6f12a42c2e9d86f6e42bb88767934
+
