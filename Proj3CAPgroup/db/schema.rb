@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210174029) do
+ActiveRecord::Schema.define(version: 20160211185108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,6 @@ ActiveRecord::Schema.define(version: 20160210174029) do
   create_table "locations", force: :cascade do |t|
     t.string   "location_name"
     t.string   "address"
-    t.string   "city"
-    t.string   "state"
-    t.integer  "zip"
     t.boolean  "home"
     t.boolean  "work"
     t.boolean  "favorite"
@@ -35,11 +32,12 @@ ActiveRecord::Schema.define(version: 20160210174029) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "password"
+    t.string   "password_digest"
     t.string   "email"
     t.string   "avatar"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "auth_token"
   end
 
   add_foreign_key "locations", "users"

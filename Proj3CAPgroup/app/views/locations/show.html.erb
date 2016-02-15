@@ -1,0 +1,8 @@
+<h1>individual edit/delete page</h1>
+
+<h3><%= @location.location_name %></h3>
+<h2><%= @location.address %></h2>
+<h2><%= @location.default_transport %><h2>
+
+<a href="/locations/<%= @location.id.to_s %>/edit">edit</a>
+<a href="/locations/<%= @location.id.to_s %>/delete">delete</a>

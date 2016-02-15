@@ -1,2 +1,87 @@
-<h1>Demo Google Api call</h1>
-<h1>Welcome! it takes <%= @time %> to <%= @ride %> from <%= @origin %> to <%= @destination %>!</h1>
+<body class="showpage">
+
+  <!-- <div class="container"> -->
+
+    <div class="row marketing centerrow">
+    <% count = 1 %>
+    <% @locations.each do |place| %>
+    <% uri = URI.encode('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+@origin+'&destinations='+place.address+'&mode='+place.default_transport+'&language=en-EN&key='+@key) %>
+      <% response = HTTParty.get(uri) 
+        parsed_response = JSON.parse(response.body)  
+        @time=parsed_response["rows"].first["elements"].first["duration"]["text"]
+        @eta=parsed_response["rows"].first["elements"].first["duration"]["value"]%>
+
+      <% if count == 1 || count == 4 || count == 7 %>
+        <div class="col-lg-4">
+          <a href="/locations/<%= place.id %>"><div class="location">
+           <h3><%= place.location_name %></h3>
+           <h1><%= @time %></h1>
+           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize %></p>
+           </div></a>
+      <% count += 1 %>
+
+      <% elsif count %3 == 0 %>
+          <a href="/locations/<%= place.id %>"><div class="location">
+          <h3><%= place.location_name %></h3>
+           <h1><%= @time %></h1>
+           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+        </div></a>
+      </div>
+      <% count += 1 %>
+
+      <% elsif count %4 == 0 %>
+        <div class="col-lg-4">
+          <a href="/locations/<%= place.id %>"><div class="location">
+           <h3><%= place.location_name %></h3>
+           <h1><%= @time %></h1>
+           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+          </div></a>
+          <% count += 1 %>
+
+      <% else %>
+      <a href="/locations/<%= place.id %>"><div class="location">
+          <h3><%= place.location_name %></h3>
+           <h1><%= @time %></h1>
+           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+        </div></a>
+        <% count += 1 %>
+      <% end %>
+    <% end %>
+<!-- deleted div here -->
+
+        <a href="#" data-toggle="modal" data-target="#addLocation" class="btn btn-primary location width33 plus">+</a>
+      </div>
+
+    </div>
+<div class="modal fade" id="addLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Location</h4>
+      </div>
+
+      <div class="modal-body">
+
+         <%= bootstrap_form_for(Location.new) do |f| %>
+            <%= f.text_field :location_name, autofocus: true, placeholder: 'Location', hide_label: true %>
+            <div id='input'>
+                 <%= f.text_field :address,  placeholder: 'Address', hide_label: true, id: "gmaps-input-address" %>
+                 <br/>
+                 <br/>
+                 <div id='gmaps-error'></div>
+           </div>
+
+            <div id='gmaps-canvas'></div>
+                   <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %>
+                   <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %>
+                   <%= f.radio_button :default_transport, 'driving', label: "Driving" %>
+                   <%= f.radio_button :default_transport, 'public_Transit', label: "Public Transit" %>
+                   <%= f.submit "Submit",  class: 'btn btn-warning' %>
+
+          <% end %>
+    </div>
+  </div>
+</div>
+</body>

@@ -1,0 +1,39 @@
+/* Fonts */
+@font-face {
+    font-family: 'Circular';
+    src: url('fonts/circular/circularstd-book-webfont.eot');
+    src: url('fonts/circular/circularstd-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/circular/circularstd-book-webfont.woff2') format('woff2'),
+         url('fonts/circular/circularstd-book-webfont.woff') format('woff'),
+         url('fonts/circular/circularstd-book-webfont.ttf') format('truetype'),
+         url('fonts/circular/circularstd-book-webfont.svg#circularstd-bookbook') format('svg');
+    font-weight: 400;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'Circular';
+    src: url('fonts/circular/circularstd-medium-webfont.eot');
+    src: url('fonts/circular/circularstd-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/circular/circularstd-medium-webfont.woff2') format('woff2'),
+         url('fonts/circular/circularstd-medium-webfont.woff') format('woff'),
+         url('fonts/circular/circularstd-medium-webfont.ttf') format('truetype'),
+         url('fonts/circular/circularstd-medium-webfont.svg#circularstd-mediummedium') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Circular';
+    src: url('fonts/circular/circularstd-bold-webfont.eot');
+    src: url('fonts/circular/circularstd-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/circular/circularstd-bold-webfont.woff2') format('woff2'),
+         url('fonts/circular/circularstd-bold-webfont.woff') format('woff'),
+         url('fonts/circular/circularstd-bold-webfont.ttf') format('truetype'),
+         url('fonts/circular/circularstd-bold-webfont.svg#circularstd-boldbold') format('svg');
+    font-weight: 800;
+    font-style: normal;
+}
+* {
+    font-family: Circular, Verdana, Arial, sans-serif;
+    font-weight: 400;
+}

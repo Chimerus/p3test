@@ -1295,10 +1295,18 @@ p {
   font-size: 16px;
   font-weight: 300;
   line-height: 1.4;
+  color: white;
+}
+.h1lead {
+  color: white;
 }
 @media (min-width: 768px) {
-  .lead {
+  p .lead {
     font-size: 21px;
+    color: white;
+  }
+  .h1lead {
+    color: white;
   }
 }
 small,
@@ -2602,6 +2610,7 @@ textarea.form-control {
 input[type="search"] {
   -webkit-appearance: none;
 }
+
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   input[type="date"].form-control,
   input[type="time"].form-control,
@@ -4353,6 +4362,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-nav .open .dropdown-menu > li > a:focus {
     background-image: none;
   }
+  .navbar-brand {
+    float: none;
+    text-align: center;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
 }
 @media (min-width: 768px) {
   .navbar-nav {
@@ -4639,6 +4656,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
   border-color: #101010;
+  color: #9d9d9d;
 }
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
@@ -5948,6 +5966,7 @@ button.close {
 .modal-body {
   position: relative;
   padding: 15px;
+  text-align: left;
 }
 .modal-footer {
   padding: 15px;
@@ -6788,20 +6807,146 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #333;
+  // background-color: #333;
 }
 body {
-  color: #fff;
+  // color: #fff;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  // text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
-body {
+body.homepage {
   background: asset-data-url("background.jpeg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.margin200px {
+  margin-top: 200px;
+}
+
+body.showpage {
+ background: fixed;
+ background-color: #327BD4;
+}
+
+.location {
+  background-color:white;
+  height: 150px;
+  border: 1px solid black;
+  color: black;
+  margin-bottom: 28px;
+}
+
+.smallfont {
+  font-size: 12px;
+}
+
+.width33 {
+  width: 100%
+}
+
+.left {
+  float: left;
+}
+
+.margin5pxleft {
+  margin-left: 5px;
+}
+
+.plus{
+  line-height:110px;
+  font-size:100px;
+}
+
+.user-profiles-list-basic{
+    line-height: 1;
+    list-style:none;
+    text-align: center;
+    margin:0;
+    padding:0;
+}
+
+.user-profiles-list-basic li{
+    display: inline-block;
+    box-sizing:border-box;
+    position: relative;
+
+    text-align:left;
+    font:normal 16px sans-serif;
+    padding: 15px 30px 15px 20px;
+    margin: 12px;
+
+    background-color:#f4f8fa;
+    border:1px solid #dbe3e7;
+    box-shadow: 0 2px 3px #dbe3e7;
+}
+
+.user-profiles-list-basic .user-avatar{
+    float: left;
+    width:100px;
+    text-align: left;
+}
+
+.user-profiles-list-basic .user-avatar img{
+    border-radius: 50%;
+    border:0;
+}
+
+.user-profiles-list-basic p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    text-align: left;
+    margin-top: 20px;
+    max-width:340px;
+}
+
+.user-profiles-list-basic p a{
+    color:#5d6569;
+    text-decoration: none;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.user-profiles-list-basic p span{
+    display: block;
+    font-size: 13px;
+    color:#808d93;
+    padding-top:4px;
+}
+
+.user-profiles-list-basic .delete{
+    background-color:#de4a4a;
+    border-radius: 50%;
+    color:#fff;
+    font-size:13px;
+    line-height: 22px;
+    width:22px;
+    height: 22px;
+    position: absolute;
+    top:-10px;
+    right:-10px;
+    text-align: center;
+    text-decoration: none;
+
+}
+
+/* Making the list responsive */
+
+@media (max-width: 400px) {
+
+    .user-profiles-list-basic li{
+        margin: 10px 0;
+    }
+
+    .user-profiles-list-basic .delete{
+        top: 10px;
+        right: 10px;
+    }
+
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
