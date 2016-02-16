@@ -2,6 +2,15 @@ require 'httparty'
 require 'uri'
 
 class UsersController < ApplicationController
+
+  def index
+    if current_user
+      redirect_to '/eta'
+    else
+      render :index
+    end
+    
+  end
   def new
   end
   def edit
@@ -63,6 +72,7 @@ class UsersController < ApplicationController
       @origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
       @locations = Location.where("user_id = '#{current_user['id']}'")
      end 
+
     render :eta
   end
 private

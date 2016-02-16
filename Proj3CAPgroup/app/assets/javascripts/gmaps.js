@@ -9,7 +9,7 @@ function gmaps_init(){
   var latlng = new google.maps.LatLng(40.7127,-74.0059);
 
   var options = {
-    zoom: 2,
+    zoom: 12,
     center: latlng,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
@@ -33,7 +33,7 @@ function gmaps_init(){
 
   // event triggered when map is clicked
   google.maps.event.addListener(map, 'click', function(event) {
-    marker.setPosition(event.latLng)
+    marker.setPosition(event.latLng);
     geocode_lookup( 'latLng', event.latLng  );
   });
 
@@ -42,8 +42,8 @@ function gmaps_init(){
 
 // move the marker to a new position, and center the map on it
 function update_map( geometry ) {
-  map.fitBounds( geometry.viewport )
-  marker.setPosition( geometry.location )
+  map.fitBounds( geometry.viewport );
+  marker.setPosition( geometry.location );
 }
 
 // fill in the UI elements with new position data
@@ -149,14 +149,3 @@ function autocomplete_init() {
   });
 }; // autocomplete_init
 
-$(document).ready(function() {
-  if( $('#gmaps-canvas').length  ) {
-    gmaps_init();
-    autocomplete_init();
-    $('#addLocation').on('shown.bs.modal', function() {
-      var currentCenter = map.getCenter();  // Get current center before resizing
-      google.maps.event.trigger(map, "resize");
-      map.setCenter(currentCenter); // Re-set previous center
-    });
-  };
-});

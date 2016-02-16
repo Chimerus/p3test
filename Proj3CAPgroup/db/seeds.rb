@@ -27,4 +27,8 @@ Location.create([
   {location_name: "Empire State Building", address: "350 5th Ave,  New York,  NY, 10118" , home: false , work: false , favorite: true , default_transport: "car", user_id: 3},
   {location_name: "Freedom Tower", address: "One World Trade Center, city: New York, NY , 10007" , home: false , work: false , favorite: true , default_transport: "transit", user_id: 4},
   {location_name: "Cornell University", address: "Cornell University, Ithaca,  NY, 14850", home: false , work: false , favorite: false , default_transport: "car", user_id: 3},
+<<<<<<< HEAD
+  ])  
+=======
   ]) 
+>>>>>>> a1d3ac917665a4f58bfb1d4da2a4b31d4b7a9c12

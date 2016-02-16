@@ -1,10 +1,11 @@
 <h1>individual ETA page</h1>
 <h3><%= @location.location_name %></h3>
 <h1><%= @time %></h1>
-<h2><%= @location.address %></h2>
+<h2 id='gmap-address'><%= @location.address %></h2>
 <h2><%= @location.default_transport.capitalize %><h2>
+<div class="show-gmap-canvas" id="gmaps-canvas" style="min-height: 250px;"></div>
 
-<a href="/locations/<%= @location.id.to_s %>/edit">edit</a>
+<a href="/locations/<%= @location.id.to_s %>/edit">Edit</a>
 
 <% if current_user.id == @location.user_id %>
    | <%= link_to "Delete", location_path(@location), method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %>
@@ -17,5 +18,21 @@
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <button type="submit">Send my ETA</button>
 </form>
-
+%>
  <% end %>
+<script>
+$(document).ready(function() {
+  if( $('#gmaps-canvas').length  ) {
+    gmaps_init();
+    var addr = $("#gmap-address").text();
+    // show location on map
+    addr ? geocode_lookup( 'address', addr, true ) : console.log("false yo.");
+    autocomplete_init();
+    $('.modal-body').ready(function() {
+      var currentCenter = map.getCenter();  // Get current center before resizing
+      google.maps.event.trigger(map, "resize");
+      map.setCenter(currentCenter); // Re-set previous center
+    });
+  };
+});
+  </script>

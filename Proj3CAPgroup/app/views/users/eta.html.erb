@@ -13,9 +13,11 @@
       <% if count == 4 || count == 7 %>
           <a href="/locations/<%= place.id %>/<%= @time %>">
           <div class="location">
-           <h3><%= place.location_name %></h3>
-           <h1><%= @time %></h1>
-           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize %></p>
+            <div>
+              <h3><%= place.location_name %></h3>
+              <h1><%= @time %></h1>
+              <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize %></p>
+            </div>
           </div></a>
       <% count += 1 %>
 
@@ -23,9 +25,11 @@
       <% elsif count %3 == 0 %>
           <a href="/locations/<%= place.id %>/<%= @time %>">
           <div class="location">
-          <h3><%= place.location_name %></h3>
-           <h1><%= @time %></h1>
-           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+            <div>
+              <h3><%= place.location_name %></h3>
+              <h1><%= @time %></h1>
+              <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+            </div>
           </div></a>
         </div>
         <div class="col-lg-4">
@@ -34,17 +38,22 @@
       <% elsif count %4 == 0 %>
           <a href="/locations/<%= place.id %>/<%= @time %>">
           <div class="location">
-           <h3><%= place.location_name %></h3>
-           <h1><%= @time %></h1>
-           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+            <div>
+              <h3><%= place.location_name %></h3>
+              <h1><%= @time %></h1>
+              <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+            </div>
           </div></a>
           <% count += 1 %>
 
       <% else %>
-      <a href="/locations/<%= place.id %>/<%= @time %>"><div class="location">
-          <h3><%= place.location_name %></h3>
-           <h1><%= @time %></h1>
-           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+      <a href="/locations/<%= place.id %>">
+        <div class="location">
+          <div>
+            <h3><%= place.location_name %></h3>
+            <h1><%= @time %></h1>
+            <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+          </div>
         </div></a>
         <% count += 1 %>
       <% end %>
@@ -78,11 +87,24 @@
                    <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %>
                    <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %>
                    <%= f.radio_button :default_transport, 'driving', label: "Driving" %>
-                   <%= f.radio_button :default_transport, 'public_Transit', label: "Public Transit" %>
+                   <%= f.radio_button :default_transport, 'transit', label: "Public Transit" %>
                    <%= f.submit "Submit",  class: 'btn btn-warning' %>
 
           <% end %>
     </div>
   </div>
 </div>
+<script>
+  $(document).ready(function() {
+  if( $('#gmaps-canvas').length  ) {
+    gmaps_init();
+    autocomplete_init();
+    $('#addLocation').on('shown.bs.modal', function() {
+      var currentCenter = map.getCenter();  // Get current center before resizing
+      google.maps.event.trigger(map, "resize");
+      map.setCenter(currentCenter); // Re-set previous center
+    });
+  };
+});
+</script>
 </body>
