@@ -2,7 +2,6 @@ body, .homepage, .showpage {
   /*background-image: url('https://images.unsplash.com/photo-1451186859696-371d9477be93?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=793b5d1d4707b9d5685bb15e8a99467e');*/
   background-size: cover;
   background: #3f51b5;
-  /*font-family: 'circularstd-bookbook';*/
 }
 div.location{
   position: relative;
@@ -35,12 +34,10 @@ a.location {
   color:white;
 }
 h1, h2, h3 {
-  /*font-family: 'circularstd-mediummedium';*/
   /*color: #ffc107;*/
   color: #fff;
 }
 .container{
-  /*font-family: 'circularstd-mediummedium', Verdana, Arial, sans-serif;*/
   font-weight: 600;
 }
 a#logout{
@@ -88,4 +85,12 @@ a.loc-edit{
 
 #gmap-address, .gmap-transport {
   padding-bottom: 10px;
+}
+input, textarea {
+  box-shadow: none;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+form.location-edit{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
