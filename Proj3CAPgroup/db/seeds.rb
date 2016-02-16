@@ -27,4 +27,5 @@ Location.create([
   {location_name: "Empire State Building", address: "350 5th Ave,  New York,  NY, 10118" , default_transport: "car", user_id: 3},
   {location_name: "Freedom Tower", address: "One World Trade Center, city: New York, NY , 10007" , default_transport: "transit", user_id: 4},
   {location_name: "Cornell University", address: "Cornell University, Ithaca,  NY, 14850", default_transport: "car", user_id: 3},
+  {location_name: "Watering Hole Bar", address: "106 E 19th St, New York, NY 10003", default_transport: "car", user_id: 4},
   ])  

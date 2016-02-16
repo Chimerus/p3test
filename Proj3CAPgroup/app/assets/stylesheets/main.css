@@ -23,8 +23,7 @@ hgroup, nav, section {
 body {
   color: #333;
   margin: 50px;
-  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size:13px;*/
-  font-family: 'circularstd-boldbold', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size:13px;
   font-weight: 600;
   font-size: 13pt;
 }

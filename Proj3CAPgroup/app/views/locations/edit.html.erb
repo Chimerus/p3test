@@ -1,0 +1,43 @@
+<!-- <div class="modal fade" id="addLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> -->
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <a href="/locations/<%= @location.id %>/<%= @time %>"><button type="button" class="close"><span aria-hidden="true">&times;</span></button></a>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+        <h4 class="modal-title" id="myModalLabel">Edit Location</h4>
+      </div>
+      <div class="modal-body">
+        <%= bootstrap_form_for(@location) do |f| %>
+          <%= f.text_field :location_name, autofocus: true, placeholder: :location_name%>
+          <div id="input">
+            <%= f.text_field :address, placeholder: :address, id: "gmaps-input-address" %>
+            <div id="gmaps-error"></div>
+          </div>
+          <div id="gmaps-canvas"></div>
+          <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %>
+          <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %>
+          <%= f.radio_button :default_transport, 'driving', label: "Driving" %>
+          <%= f.radio_button :default_transport, 'transit', label: "Transit" %>
+          <%= f.submit "Submit",  class: 'btn btn-warning' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <script>
+$(document).ready(function() {
+  if( $('#gmaps-canvas').length  ) {
+    gmaps_init();
+    var addr = $("#gmaps-input-address").val();
+    // show location on map
+    addr ? geocode_lookup( 'address', addr, true ) : console.log("false yo.");
+    autocomplete_init();
+    $('.modal-body').ready(function() {
+      var currentCenter = map.getCenter();  // Get current center before resizing
+      google.maps.event.trigger(map, "resize");
+      map.setCenter(currentCenter); // Re-set previous center
+    });
+  };
+});
+  </script>
+<!-- </div> -->
