@@ -1,12 +1,20 @@
-<h1>individual edit/delete page</h1>
-
+<h1>individual ETA page</h1>
 <h3><%= @location.location_name %></h3>
+<h1><%= @time %></h1>
 <h2><%= @location.address %></h2>
 <h2><%= @location.default_transport.capitalize %><h2>
 
 <a href="/locations/<%= @location.id.to_s %>/edit">edit</a>
 
 <% if current_user.id == @location.user_id %>
-   | <%= link_to "Delete", location_path(@location), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }
-%>
+   | <%= link_to "Delete", location_path(@location), method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %>
+
+<form action="/sendeta" method="post">
+  <label>Enter number to text ETA to</label>
+  <input type="text" name="send_to" placeholder="country code, area code, number, no spaces EX: 19177220237">
+  <input type ="hidden" name="time" value="<%= @time %>">
+  <input type ="hidden" name="destination" value="<%= @location.location_name %>">
+  <button type="submit">Send my ETA</button>
+</form>
+
  <% end %>

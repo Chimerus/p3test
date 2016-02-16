@@ -21,10 +21,10 @@ class UsersController < ApplicationController
     user = User.find(id)
      binding.pry
     if user.update_attributes(user_params)
-      flash[:notic] = "your account was successfully updated "
+      flash[:notice] = "your account was successfully updated "
       redirect_to "/eta"
     else
-       flash[:notic] = "Error  your account was not updated"
+       flash[:notice] = "Error  your account was not updated"
        redirect_to "/users/#{user.id}/edit"
      end
       

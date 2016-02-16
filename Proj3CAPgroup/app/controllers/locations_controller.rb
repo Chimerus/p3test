@@ -1,3 +1,4 @@
+require 'twilio-ruby' 
 class LocationsController < ApplicationController
 
   def index
@@ -5,6 +6,7 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
+    @time = params[:time]
   end 
 
   def new
@@ -63,6 +65,13 @@ class LocationsController < ApplicationController
     end
   end
 
+  def sendeta
+    msg = "Hey this is "+current_user.name+" I'll be at "+params[:destination]+" in "+params[:time]
+    send_to = "+"+params[:send_to]
+    send_message(send_to, msg)
+    flash[:success] = "ETA sent!"
+    redirect_to '/eta'
+  end
   def destroy
     @location = Location.find(params[:id])
     if @location.destroy
@@ -70,6 +79,7 @@ class LocationsController < ApplicationController
       redirect_to '/eta'
     end
   end
+
 
   private
     def set_location
@@ -80,4 +90,15 @@ class LocationsController < ApplicationController
     def location_params
     params.require(:location).permit(:location_name, :address,  :default_transport, :user_id).merge(user_id: current_user.id)
     end
+
+    def send_message(send_to, msg)
+    @twilio_number = ENV['TWILIO_NUMBER']
+    @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+    message = @client.account.messages.create(
+      :from => @twilio_number,
+      :to => send_to,
+      :body => msg,
+    )
+    puts message.body
+  end
 end
