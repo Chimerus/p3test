@@ -4,7 +4,12 @@
       <div class="col-lg-4">
     <% count = 1 %>
     <% @locations.each do |place| %>
-    <% uri = URI.encode('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+@origin+'&destinations='+place.address+'&mode='+place.default_transport+'&language=en-EN&key='+@key) %>
+    <% if place.latitude && place.longitude %>
+    <% origin = place.latitude.to_s+","+place.longitude.to_s %>
+      <% uri = URI.encode('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+origin+'&destinations='+place.address+'&mode='+place.default_transport+'&language=en-EN&key='+@key) %>
+    <% else %>
+       <% uri = URI.encode('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+@origin+'&destinations='+place.address+'&mode='+place.default_transport+'&language=en-EN&key='+@key) %>
+      <% end %>
       <% response = HTTParty.get(uri)
         parsed_response = JSON.parse(response.body)
         @time=parsed_response["rows"].first["elements"].first["duration"]["text"]

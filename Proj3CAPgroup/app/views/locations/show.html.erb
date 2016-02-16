@@ -2,7 +2,7 @@
   <h3><%= @location.location_name %></h3>
   <h1><%= @time %></h1>
   <h3 id='gmap-address'><%= @location.address %></h3>
-  <h3 class="gmap-transport">&#xe536;<%= @location.default_transport.capitalize %></h3>
+  <h3 class="gmap-transport"><%= @location.default_transport.capitalize %></h3>
   <div class="show-gmap-canvas" id="gmaps-canvas" style="min-height: 250px;"></div>
   <a class="loc-edit" href="/locations/<%= @location.id.to_s %>/edit/<%= @time %>">Edit</a>
 
