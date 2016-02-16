@@ -13,9 +13,11 @@
       <% if count == 4 || count == 7 %>
           <a href="/locations/<%= place.id %>">
           <div class="location">
-           <h3><%= place.location_name %></h3>
-           <h1><%= @time %></h1>
-           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize %></p>
+            <div>
+              <h3><%= place.location_name %></h3>
+              <h1><%= @time %></h1>
+              <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize %></p>
+            </div>
           </div></a>
       <% count += 1 %>
 
@@ -23,9 +25,11 @@
       <% elsif count %3 == 0 %>
           <a href="/locations/<%= place.id %>">
           <div class="location">
-          <h3><%= place.location_name %></h3>
-           <h1><%= @time %></h1>
-           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+            <div>
+              <h3><%= place.location_name %></h3>
+              <h1><%= @time %></h1>
+              <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+            </div>
           </div></a>
         </div>
         <div class="col-lg-4">
@@ -34,17 +38,22 @@
       <% elsif count %4 == 0 %>
           <a href="/locations/<%= place.id %>">
           <div class="location">
-           <h3><%= place.location_name %></h3>
-           <h1><%= @time %></h1>
-           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+            <div>
+              <h3><%= place.location_name %></h3>
+              <h1><%= @time %></h1>
+              <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+            </div>
           </div></a>
           <% count += 1 %>
 
       <% else %>
-      <a href="/locations/<%= place.id %>"><div class="location">
-          <h3><%= place.location_name %></h3>
-           <h1><%= @time %></h1>
-           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+      <a href="/locations/<%= place.id %>">
+        <div class="location">
+          <div>
+            <h3><%= place.location_name %></h3>
+            <h1><%= @time %></h1>
+            <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+          </div>
         </div></a>
         <% count += 1 %>
       <% end %>

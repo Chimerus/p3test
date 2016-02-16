@@ -4,11 +4,43 @@ body, .showpage {
   /*background: #2196f3;*/
   /*font-family: 'circularstd-bookbook';*/
 }
+div.location{
+  position: relative;
+  background-color: transparent;
+  border: solid 3px #fff;
+  border-radius:15px;
+}
+a.location { 
+  border: solid 3px #fff;
+  border-radius: 15px;
+  color: white;
+  background-color: transparent;
+}
+
+.location div{
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.location h3{
+
+}
+.location h1, h3, p {
+  margin: 0;
+}
 h1, h2, h3 {
   /*font-family: 'circularstd-mediummedium';*/
-  color: #ffc107;
+  /*color: #ffc107;*/
+  color: #fff;
 }
 .container{
   /*font-family: 'circularstd-mediummedium', Verdana, Arial, sans-serif;*/
   font-weight: 600;
+}
+a#logout{
+  text-decoration: underline;
+  padding: 0 15px;
+
 }

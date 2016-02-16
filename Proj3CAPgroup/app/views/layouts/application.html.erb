@@ -20,12 +20,15 @@
           <a class="navbar-brand" href="/logout">Commuter Assistance Program</a>
           <div class="navbar-form navbar-right">
             <% if current_user %>
-            <h5>Welcome <%= current_user['name'] %> the time is now <%= Time.now.strftime("%I:%M %p") %>.</h5>
+              <h5>
+                Hi <%= current_user['name'] %>!
+                <a id="logout" href="/logout">Logout</a>
+              </h5>
             <% else %>
-            <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#signUp">
-              Sign-Up Now
-            </a>
-            <a href="#" data-toggle="modal" data-target="#signIn" class="btn btn-primary">Sign-In</a>
+              <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#signUp">
+                Sign-Up Now
+              </a>
+              <a href="#" data-toggle="modal" data-target="#signIn" class="btn btn-primary">Sign-In</a>
             <% end %>
           </div>
         </div>

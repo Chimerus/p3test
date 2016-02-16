@@ -9,7 +9,7 @@ function gmaps_init(){
   var latlng = new google.maps.LatLng(40.7127,-74.0059);
 
   var options = {
-    zoom: 8,
+    zoom: 12,
     center: latlng,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
