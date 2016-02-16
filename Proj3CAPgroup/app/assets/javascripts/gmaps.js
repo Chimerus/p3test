@@ -2,6 +2,18 @@ var geocoder;
 var map;
 var marker;
 
+navigator.geolocation.watchPosition(function(position) {
+  var lat = position.coords.latitude;
+  var lng = position.coords.longitude;
+
+  $('#location_longitude').val(lng);
+  $('#location_latitude').val(lat);
+}, function (error) {
+
+}, {
+  enableHighAccuracy: true
+});
+
 // initialise the google maps objects, and add listeners
 function gmaps_init(){
 
