@@ -20,20 +20,46 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
-     if @location.save
-       redirect_to '/eta'
-     else
-      redirect_to '/edit'
+    # stop them from entering invalid address!
+    key = ENV['MAPS_KEY']
+    origin_query = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+key)
+    parsed_response = JSON.parse(origin_query.body)["location"]
+    origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
+    response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+origin+'&destinations='+@location.address+'&mode='+@location.default_transport+'&language=en-EN&key='+key) 
+    parsed_response = JSON.parse(response.body)
+    if parsed_response["rows"][0]["elements"][0]["status"] != "ZERO_RESULTS"
+      if @location.save
+        redirect_to '/eta'
+      else
+        flash[:notice] = "Error: Location was not created"
+        redirect_to '/eta'
+      end
+    else 
+      flash[:notice] = "Error: Invalid location"
+      redirect_to '/eta'
     end
   end
 
   def update
     location = Location.find(params[:id])
-    if location.update_attributes(location_params)
-      flash[:notice] = "Your location successfully updated"
-      redirect_to '/eta'
+    # stop them from updating to an invalid address!
+    key = ENV['MAPS_KEY']
+    origin_query = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+key)
+    parsed_response = JSON.parse(origin_query.body)["location"]
+    origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
+    response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+origin+'&destinations='+location.address+'&mode='+location.default_transport+'&language=en-EN&key='+key) 
+    parsed_response = JSON.parse(response.body)
+    if parsed_response["rows"][0]["elements"][0]["status"] != "ZERO_RESULTS"
+      if location.update_attributes(location_params)
+        flash[:notice] = "Your location successfully updated"
+        redirect_to '/eta'
+      else
+        flash[:notice] = "Error: Location not updated"
+        redirect_to '/eta'
+      end
     else
-     redirect_to '/edit'
+      flash[:notice] = "Error: Invalid location"
+      redirect_to '/eta'
     end
   end
 
