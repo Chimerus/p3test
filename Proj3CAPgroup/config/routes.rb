@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :locations
+  resources :current
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
