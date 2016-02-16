@@ -3,7 +3,8 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <a href="/locations/<%= @location.id %>/<%= @time %>"><button type="button" class="close"><span aria-hidden="true">&times;</span></button></a>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
         <h4 class="modal-title" id="myModalLabel">Edit Location</h4>
       </div>
       <div class="modal-body">
@@ -17,7 +18,7 @@
           <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %>
           <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %>
           <%= f.radio_button :default_transport, 'driving', label: "Driving" %>
-          <%= f.radio_button :default_transport, 'public_Transit', label: "Public Transit" %>
+          <%= f.radio_button :default_transport, 'transit', label: "transit" %>
           <%= f.submit "Submit",  class: 'btn btn-warning' %>
         <% end %>
       </div>

@@ -1,3 +1,4 @@
+require 'twilio-ruby' 
 class LocationsController < ApplicationController
 
   def index
@@ -5,6 +6,7 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
+    @time = params[:time]
   end 
 
   def new
@@ -12,6 +14,7 @@ class LocationsController < ApplicationController
 
   def edit
      @location = Location.find(params[:id])
+     @time = params[:time]
   end
 
   def delete
@@ -20,23 +23,56 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
-     if @location.save
-       redirect_to '/eta'
-     else
-      redirect_to '/edit'
+    # stop them from entering invalid address!
+    key = ENV['MAPS_KEY']
+    origin_query = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+key)
+    parsed_response = JSON.parse(origin_query.body)["location"]
+    origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
+    response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+origin+'&destinations='+@location.address+'&mode='+@location.default_transport+'&language=en-EN&key='+key) 
+    parsed_response = JSON.parse(response.body)
+    if parsed_response["rows"][0]["elements"][0]["status"] != "ZERO_RESULTS"
+      if @location.save
+        redirect_to '/eta'
+      else
+        flash[:notice] = "Error: Location was not created"
+        redirect_to '/eta'
+      end
+    else 
+      flash[:notice] = "Error: Invalid location"
+      redirect_to '/eta'
     end
   end
 
   def update
     @location = Location.find(params[:id])
-    if @location.update_attributes(location_params)
-      flash[:notice] = "Your location successfully updated"
-      redirect_to '/eta'
+    # stop them from updating to an invalid address!
+    key = ENV['MAPS_KEY']
+    origin_query = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+key)
+    parsed_response = JSON.parse(origin_query.body)["location"]
+    origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
+    response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+origin+'&destinations='+@location.address+'&mode='+@location.default_transport+'&language=en-EN&key='+key) 
+    parsed_response = JSON.parse(response.body)
+    if parsed_response["rows"][0]["elements"][0]["status"] != "ZERO_RESULTS"
+      if @location.update_attributes(location_params)
+        flash[:notice] = "Your location successfully updated"
+        redirect_to '/eta'
+      else
+        flash[:notice] = "Error: Location not updated"
+        redirect_to '/eta'
+      end
     else
-     redirect_to '/edit'
+      flash[:notice] = "Error: Invalid location"
+      redirect_to '/eta'
     end
   end
 
+  def sendeta
+    msg = "Hey this is "+current_user.name+" I'll be at "+params[:destination]+" in "+params[:time]
+    send_to = "+"+params[:send_to]
+    send_message(send_to, msg)
+    flash[:success] = "ETA sent!"
+    redirect_to '/eta'
+  end
   def destroy
     @location = Location.find(params[:id])
     if @location.destroy
@@ -44,6 +80,7 @@ class LocationsController < ApplicationController
       redirect_to '/eta'
     end
   end
+
 
   private
     def set_location
@@ -54,4 +91,15 @@ class LocationsController < ApplicationController
     def location_params
     params.require(:location).permit(:location_name, :address,  :default_transport, :user_id).merge(user_id: current_user.id)
     end
+
+    def send_message(send_to, msg)
+    @twilio_number = ENV['TWILIO_NUMBER']
+    @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+    message = @client.account.messages.create(
+      :from => @twilio_number,
+      :to => send_to,
+      :body => msg,
+    )
+    puts message.body
+  end
 end

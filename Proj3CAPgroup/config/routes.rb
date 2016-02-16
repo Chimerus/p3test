@@ -6,9 +6,14 @@ Rails.application.routes.draw do
   root 'users#index'
 
   get '/eta' =>'users#eta'
+  get '/locations/:id/edit/:time' => 'locations#edit'
+  # send the eta time
+  get '/locations/:id/:time' => 'locations#show'
+  # send to controller
+  post '/sendeta' => 'locations#sendeta'
 
   resources :users
-   resources :locations
+  resources :locations
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

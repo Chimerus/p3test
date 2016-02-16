@@ -1,4 +1,4 @@
-<body class="showpage">
+<body>
 
     <div class="row marketing centerrow">
       <div class="col-lg-4">
@@ -11,7 +11,7 @@
         @eta=parsed_response["rows"].first["elements"].first["duration"]["value"]%>
 
       <% if count == 4 || count == 7 %>
-          <a href="/locations/<%= place.id %>">
+          <a href="/locations/<%= place.id %>/<%= @time %>">
           <div class="location">
             <div>
               <h3><%= place.location_name %></h3>
@@ -23,7 +23,7 @@
 
 
       <% elsif count %3 == 0 %>
-          <a href="/locations/<%= place.id %>">
+          <a href="/locations/<%= place.id %>/<%= @time %>">
           <div class="location">
             <div>
               <h3><%= place.location_name %></h3>
@@ -36,7 +36,7 @@
       <% count += 1 %>
 
       <% elsif count %4 == 0 %>
-          <a href="/locations/<%= place.id %>">
+          <a href="/locations/<%= place.id %>/<%= @time %>">
           <div class="location">
             <div>
               <h3><%= place.location_name %></h3>
@@ -47,7 +47,7 @@
           <% count += 1 %>
 
       <% else %>
-      <a href="/locations/<%= place.id %>">
+      <a href="/locations/<%= place.id %>/<%= @time %>">
         <div class="location">
           <div>
             <h3><%= place.location_name %></h3>
@@ -59,7 +59,7 @@
       <% end %>
     <% end %>
 
-        <a href="#" data-toggle="modal" data-target="#addLocation" class="btn btn-primary location width33 plus">+</a>
+        <a href="#" data-toggle="modal" data-target="#addLocation" class="btn btn-danger location width33 plus">+</a>
       </div>
 
     </div>

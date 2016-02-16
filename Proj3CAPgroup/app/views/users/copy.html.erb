@@ -7,21 +7,8 @@
           <span class="input-group-addon" id="basic-addon2">Street Address:</span>
           <input type="text" class="form-control" name="address" id= "address" placeholder="Street Address" aria-describedby="basic-addon2">
         </div>
-        <!-- <d
-        iv class="input-group">
-          <span class="input-group-addon" id="basic-addon2">City:</span>
-          <input type="text" class="form-control" placeholder="City" aria-describedby="basic-addon2">
-        </div>
-        <div class="input-group">
-          <span class="input-group-addon" id="basic-addon2">State:</span>
-          <input type="text" class="form-control" placeholder="State" aria-describedby="basic-addon2">
-        </div>
-        <div class="input-group">
-          <span class="input-group-addon" id="basic-addon2">Zip:</span>
-          <input type="text" class="form-control" placeholder="Zip" aria-describedby="basic-addon2">
-        </div> -->
+
         <div class="margin5pxleft">
-        <!-- <form role="form"> -->
             <div class="radio-inline">
               <label>
                 <input type="radio" name="default_transport" id="Walking" value="walking">
@@ -47,8 +34,6 @@
               </label>
             </div>
             <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
-
-          <!-- </form> -->
         </div>
       </div>
       <div class="modal-footer">

@@ -17,7 +17,7 @@
 
       <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
-          <a class="navbar-brand" href="/logout">Commuter Assistance Program</a>
+          <a class="navbar-brand" href="/eta">CAP</a>
           <div class="navbar-form navbar-right">
             <% if current_user %>
               <h5>
@@ -25,24 +25,24 @@
                 <a id="logout" href="/logout">Logout</a>
               </h5>
             <% else %>
-              <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#signUp">
-                Sign-Up Now
-              </a>
-              <a href="#" data-toggle="modal" data-target="#signIn" class="btn btn-primary">Sign-In</a>
+              <a href="#" class="nav-link" data-toggle="modal" data-target="#signUp">
+                Sign Up Free
+              </a><span class="nav-link">|</span>
+              <a href="#" class="nav-link" data-toggle="modal" data-target="#signIn" >Sign-In</a>
             <% end %>
           </div>
         </div>
       </nav>
-      <div class="container">
+  <div class="container" style="margin-left: 0; ">
    <% flash.each do |key, value| %>
-  <div class="alert alert-info">
+  <div style="margin-right: 26px; " class="alert alert-info">
    <a href="#" data-dismiss="alert" class="close">×</a>
      <ul  style="list-style: none ;">
        <li style= "list_style: none;">
        <%= value %>
         </li>
        </ul>
-     </div>
+  </div>
   <% end %>
   </div>
 
