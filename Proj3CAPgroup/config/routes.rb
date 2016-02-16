@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'users#index'
 
   get '/eta' =>'users#eta'
+  get '/locations/:id/edit/:time' => 'locations#edit'
   # send the eta time
   get '/locations/:id/:time' => 'locations#show'
   # send to controller

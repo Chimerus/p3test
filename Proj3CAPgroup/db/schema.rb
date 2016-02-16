@@ -19,9 +19,6 @@ ActiveRecord::Schema.define(version: 20160212215947) do
   create_table "locations", force: :cascade do |t|
     t.string   "location_name"
     t.string   "address"
-    t.boolean  "home"
-    t.boolean  "work"
-    t.boolean  "favorite"
     t.string   "default_transport"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false

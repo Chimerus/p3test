@@ -1,25 +1,28 @@
-<h1>individual ETA page</h1>
-<h3><%= @location.location_name %></h3>
-<h1><%= @time %></h1>
-<h2 id='gmap-address'><%= @location.address %></h2>
-<h2><%= @location.default_transport.capitalize %><h2>
-<div class="show-gmap-canvas" id="gmaps-canvas" style="min-height: 250px;"></div>
+<div class="show-location">
+  <h3><%= @location.location_name %></h3>
+  <h1><%= @time %></h1>
+  <h3 id='gmap-address'><%= @location.address %></h3>
+  <h3 class="gmap-transport"><%= @location.default_transport.capitalize %></h3>
+  <div class="show-gmap-canvas" id="gmaps-canvas" style="min-height: 250px;"></div>
+  <a class="loc-edit" href="/locations/<%= @location.id.to_s %>/edit/<%= @time %>">Edit</a>
 
-<a href="/locations/<%= @location.id.to_s %>/edit">Edit</a>
-
-<% if current_user.id == @location.user_id %>
-   | <%= link_to "Delete", location_path(@location), method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %>
+  <% if current_user.id == @location.user_id %>
+     <span style="color:white; font-size:14pt;">|</span> <%= link_to "Delete", location_path(@location), class: "loc-edit",method: :delete, data: { confirm: 'Are you sure you want to delete this?' }
+  %>
+ <% end %>
+</div>
 
 <form action="/sendeta" method="post">
-  <label>Enter number to text ETA to</label>
-  <input type="text" name="send_to" placeholder="country code, area code, number, no spaces EX: 19177220237">
+  <label style="padding-top:10px; color:white; font-size:14pt;">Enter number to text ETA to</label>
+  <div id="tel-input">
+    <input type="text" name="send_to" class="phone-width" placeholder="Country code, area code, number, no spaces EX: 19177220237"></br>
+  </div>
   <input type ="hidden" name="time" value="<%= @time %>">
   <input type ="hidden" name="destination" value="<%= @location.location_name %>">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <button type="submit">Send my ETA</button>
+  <button class="btn-lg btn-danger" type="submit">Send my ETA</button>
 </form>
-%>
- <% end %>
+
 <script>
 $(document).ready(function() {
   if( $('#gmaps-canvas').length  ) {

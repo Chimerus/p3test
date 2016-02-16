@@ -14,6 +14,7 @@ class LocationsController < ApplicationController
 
   def edit
      @location = Location.find(params[:id])
+     @time = params[:time]
   end
 
   def delete
@@ -43,16 +44,16 @@ class LocationsController < ApplicationController
   end
 
   def update
-    location = Location.find(params[:id])
+    @location = Location.find(params[:id])
     # stop them from updating to an invalid address!
     key = ENV['MAPS_KEY']
     origin_query = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+key)
     parsed_response = JSON.parse(origin_query.body)["location"]
     origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
-    response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+origin+'&destinations='+location.address+'&mode='+location.default_transport+'&language=en-EN&key='+key) 
+    response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+origin+'&destinations='+@location.address+'&mode='+@location.default_transport+'&language=en-EN&key='+key) 
     parsed_response = JSON.parse(response.body)
     if parsed_response["rows"][0]["elements"][0]["status"] != "ZERO_RESULTS"
-      if location.update_attributes(location_params)
+      if @location.update_attributes(location_params)
         flash[:notice] = "Your location successfully updated"
         redirect_to '/eta'
       else
