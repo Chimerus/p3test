@@ -9,11 +9,14 @@ class UsersController < ApplicationController
     else
       render :index
     end
-    
   end
+
   def new
   end
+
   def edit
+     id = params[:id]
+    @user = User.find(id)
   end
 
   def index
@@ -27,14 +30,13 @@ class UsersController < ApplicationController
   def update
    
     id = params[:id]
-    user = User.find(id)
-     binding.pry
-    if user.update_attributes(user_params)
-      flash[:notice] = "your account was successfully updated "
+    @user = User.find(id)
+    if @user.update_attributes(user_params)
+      flash[:notice] = "Your account was successfully updated "
       redirect_to "/eta"
     else
-       flash[:notice] = "Error  your account was not updated"
-       redirect_to "/users/#{user.id}/edit"
+       flash[:notice] = "Error: Please enter a password"
+       redirect_to(:back)
      end
       
 
@@ -62,19 +64,23 @@ class UsersController < ApplicationController
   end
 
   def eta
-    @key = ENV['MAPS_KEY']
-    # get their current location - google locate
-    response = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+@key)
-    if response.code != 200 
-      flash.now[:error] = "Error: Cannot find location"
+    if current_user
+      @key = ENV['MAPS_KEY']
+      # get their current location - google locate
+      response = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+@key)
+      if response.code != 200 
+        flash.now[:error] = "Error: Cannot find location"
+      else
+        parsed_response = JSON.parse(response.body)["location"]
+        @origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
+        @locations = Location.where("user_id = '#{current_user['id']}'")
+       end 
+      render :eta
     else
-      parsed_response = JSON.parse(response.body)["location"]
-      @origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
-      @locations = Location.where("user_id = '#{current_user['id']}'")
-     end 
-
-    render :eta
+      redirect_to '/'
+    end
   end
+
 private
 
   def user_params
