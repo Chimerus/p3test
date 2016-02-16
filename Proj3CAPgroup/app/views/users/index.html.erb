@@ -33,15 +33,29 @@
 
 <script>
 
-
+var isAppended = false
 var password = document.getElementById("password")
   , confirm_password = document.getElementById("confirm_password");
 
 function validatePassword(){
   if(password.value != confirm_password.value) {
+
     confirm_password.setCustomValidity("Passwords Don't Match");
+  if (password.value.length < 6){
+  $message =  $("<p>Password must be at lest 6 characters</p>");
+  $message.attr('id', "dontMatch");
+
+  if (isAppended === false){
+
+  $("#myModalLabel").append($message);
+  $("#dontMatch").css('color', 'red');
+  isAppended = true;
+  }
+  }
+
   } else {
     confirm_password.setCustomValidity('');
+    $('#myModalLabel').remove("#dontMatch")
   }
 }
 
