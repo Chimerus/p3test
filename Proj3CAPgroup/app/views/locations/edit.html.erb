@@ -1,48 +1,42 @@
-<div class="container">
-<div class="jumbotron">
-  
-    <div class="form-group">
+<!-- <div class="modal fade" id="addLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> -->
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
 
-<<<<<<< HEAD
-            <p>
-                <a href=""><%=current_user['name']%>'s Locations</a>
-            <%= bootstrap_form_for :location, :html => { :class => "location"}, url: '/locations' do |f| %>
-
-              <%= f.text_field :location_name,autofocus: true, placeholder: 'Name of Location', hide_label: true %>
-              <%= f.text_field :address,  placeholder: 'Address', hide_label: true %>
-              <%# f.text_field :default_transport,  placeholder: 'Method of Transportation' , hide_label: true%>
-              <select>
-                  <option value="walking">Walking</option>
-                  <option value="transit">Subway</option>
-                  <option value="biking">Biking</option>
-              </select>
-
-              <%= f.password_field :password_confirmation,  placeholder: 'Password confirmation', hide_label: true %>
-              <%= f.submit "Submit",  class: 'btn btn-warning' %>
-
-            <% end %>
-
-            </p>
-=======
-
-
-
-<%=bootstrap_form_for(@location, url: location_path(@location), html: {method: "patch"}) do |f| %>
-    
-           <%= f.text_field :location_name, autofocus: true, placeholder: 'Location', hide_label: true %><br>
-           <%= f.text_field :address,  placeholder: 'Address', hide_label: true, id: "gmaps-input-address", rows: "5" %><br>
-         <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %>
-        <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %>
-        <%= f.radio_button :default_transport, 'driving', label: "Driving" %>
-         <%= f.radio_button :default_transport, 'public Transit', label: "Public Transit" %>
-           <%= f.submit "Submit",  class: 'btn btn-warning' %><br>
-        
-<% end %>
-
-</div>
-</div>
-</div>
-
-
->>>>>>> cccd62f796d6f12a42c2e9d86f6e42bb88767934
-
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Location</h4>
+      </div>
+      <div class="modal-body">
+        <%= bootstrap_form_for(@location) do |f| %>
+          <%= f.text_field :location_name, autofocus: true, placeholder: :location_name%>
+          <div id="input">
+            <%= f.text_field :address, placeholder: :address, id: "gmaps-input-address" %>
+            <div id="gmaps-error"></div>
+          </div>
+          <div id="gmaps-canvas"></div>
+          <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %>
+          <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %>
+          <%= f.radio_button :default_transport, 'driving', label: "Driving" %>
+          <%= f.radio_button :default_transport, 'public_Transit', label: "Public Transit" %>
+          <%= f.submit "Submit",  class: 'btn btn-warning' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <script>
+$(document).ready(function() {
+  if( $('#gmaps-canvas').length  ) {
+    gmaps_init();
+    var addr = $("#gmaps-input-address").val();
+    // show location on map
+    addr ? geocode_lookup( 'address', addr, true ) : console.log("false yo.");
+    autocomplete_init();
+    $('.modal-body').ready(function() {
+      var currentCenter = map.getCenter();  // Get current center before resizing
+      google.maps.event.trigger(map, "resize");
+      map.setCenter(currentCenter); // Re-set previous center
+    });
+  };
+});
+  </script>
+<!-- </div> -->

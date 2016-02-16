@@ -25,15 +25,9 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-<<<<<<< HEAD
-     session[:user_id] = user.id
-      flash[:notice] = "Thanks for siging up!"
-
-      redirect_to '/'
-=======
       cookies.permanent[:auth_token] = user.auth_token
+      flash[:notice] = "Thanks for siging up!"
       redirect_to '/eta'
->>>>>>> a1d3ac917665a4f58bfb1d4da2a4b31d4b7a9c12
     else
       redirect_to '/'
     end
@@ -41,8 +35,7 @@ class UsersController < ApplicationController
 
   def eta
     @key = ENV['MAPS_KEY']
-    binding.pry
-    # get their current location - google locate
+    # get their current location - google geolocate
     response = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+@key)
     if response.code != 200 
       flash.now[:error] = "Error: Cannot find location"

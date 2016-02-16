@@ -23,11 +23,11 @@
           <div class="form-group">
             <%= bootstrap_form_for :user, :html => { :class => "class_name_here"}, url: '/users' do |f| %>
 
-              <%= f.text_field :name,autofocus: true, placeholder: 'Name', hide_label: true %>
-              <%= f.text_field :email,  placeholder: 'Email', hide_label: true %>
-              <%= f.password_field :password,  placeholder: 'Password' , hide_label: true%>
-              <%= f.password_field :password_confirmation,  placeholder: 'Password confirmation', hide_label: true %>
-              <%= f.submit "Submit",  class: 'btn btn-warning' %>
+             <%= f.text_field :name,autofocus: true, placeholder: 'Name', hide_label: true %>
+           <%= f.text_field :email,  placeholder: 'Email', hide_label: true %>
+           <%= f.password_field :password,  placeholder: 'Password' , hide_label: true%>
+            <%= f.password_field :password_confirmation,  placeholder: 'Password confirmation', hide_label: true %>
+            <%= f.submit "Submit",  class: 'btn btn-warning' %>
 
           <% end %>
 

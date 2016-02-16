@@ -1,26 +1,25 @@
 <body class="showpage">
 
+<div class="navbar-wrapper">
   <div class="container">
 
     <div class="row marketing centerrow">
     <% count = 1 %>
-      
+
       <% @locations.each do |place| %>
       <% full_location = place.address %>
-      <% response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+@origin+'&destinations='+full_location+'&mode='+place.default_transport+'&language=en-EN&key='+@key) 
-    parsed_response = JSON.parse(response.body)  
+      <% response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+@origin+'&destinations='+full_location+'&mode='+place.default_transport+'&language=en-EN&key='+@key)
+    parsed_response = JSON.parse(response.body)
         @time=parsed_response["rows"].first["elements"].first["duration"]["text"]
         @eta=parsed_response["rows"].first["elements"].first["duration"]["value"]%>
 
-      <% if count == 1 || count == 4 || count == 7 %>
+      <% if count == 1 %>
         <div class="col-lg-4">
           <div class="location">
            <h3><%= place.location_name %></h3>
            <h1><%= @time %></h1>
            <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize %></p>
-             <a href="/locations/<%=place.id.to_s%>/edit">edit</a>
-             <a href="/locations/<%=place.id.to_s%>/delete">delete</a>
-           </div>
+          </div>
       <% count += 1 %>
 
       <% elsif count %3 == 0 %>
@@ -28,24 +27,30 @@
           <h3><%= place.location_name %></h3>
            <h1><%= @time %></h1>
            <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
-            <a href="/locations/<%=place.id.to_s%>/edit">edit</a>
-            <a href="/locations/<%=place.id.to_s%>/delete">delete</a>
         </div>
       </div>
         <% count += 1 %>
+
+      <% elsif count %4 == 0 %>
+        <div class="col-lg-4">
+          <div class="location">
+           <h3><%= place.location_name %></h3>
+           <h1><%= @time %></h1>
+           <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
+           </div>
+
+      <% count += 1 %>
 
       <% else %>
       <div class="location">
           <h3><%= place.location_name %></h3>
            <h1><%= @time %></h1>
            <p>ETA at <%= (Time.now+ @eta).strftime("%I:%M %p") %> via <%= place.default_transport.capitalize  %></p>
-          <a href="/locations/<%=place.id.to_s%>/edit">edit</a>
-          <a href="/locations/<%=place.id.to_s%>/delete">delete</a>
-
         </div>
         <% count += 1 %>
       <% end %>
     <% end %>
+  <!-- </div> -->
 
         <a href="#" data-toggle="modal" data-target="#addLocation" class="btn btn-primary location width33 plus">+</a>
       </div>
@@ -54,7 +59,7 @@
 <div class="modal fade" id="addLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-     
+
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Add Location</h4>
@@ -62,21 +67,30 @@
 
 
       <div class="modal-body">
-     <%= bootstrap_form_for :location, :url => {:controller => "locations", :action => "create"} do |f| %>
+        <!-- <div class="input-group">
+          <span class="input-group-addon" id="basic-addon2">Street Address:</span>
+          <input type="text" class="form-control" placeholder="Street Address" aria-describedby="basic-addon2">
+        </div>
+         -->
 
-           <%= f.text_field :location_name, autofocus: true, placeholder: 'Location', hide_label: true %>
-           <%= f.text_field :address,  placeholder: 'Address', hide_label: true, id: "gmaps-input-address" %>
-           <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %>
-           <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %>
-           <%= f.radio_button :default_transport, 'driving', label: "Driving" %>
-           <%= f.radio_button :default_transport, 'public_Transit', label: "Public Transit" %>
-           <%= f.submit "Submit",  class: 'btn btn-warning' %>
-        
-      <%end %>
+         <%= bootstrap_form_for(Location.new) do |f| %>
+            <%= f.text_field :location_name, autofocus: true, placeholder: 'Location', hide_label: true %>
+            <div id='input'>
+                 <%= f.text_field :address,  placeholder: 'Address', hide_label: true, id: "gmaps-input-address" %>
+                 <br/>
+                 <br/>
+                 <div id='gmaps-error'></div>
+           </div>
 
+            <div id='gmaps-canvas'></div>
+                   <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %>
+                   <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %>
+                   <%= f.radio_button :default_transport, 'driving', label: "Driving" %>
+                   <%= f.radio_button :default_transport, 'public_Transit', label: "Public Transit" %>
+                   <%= f.submit "Submit",  class: 'btn btn-warning' %>
+
+          <% end %>
     </div>
   </div>
 </div>
-
-
 </body>
