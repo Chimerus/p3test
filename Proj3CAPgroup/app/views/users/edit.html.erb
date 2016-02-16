@@ -1,27 +1,18 @@
 
- <%if current_user.id == params[:id].to_i %>
+  
+ <%if current_user%>
+   <%if current_user.id == params[:id].to_i %>
 
                 <div class="container">
-  <div class="row">
-    <div class="col-sm-12 text-center bootstrap-welcome margin200px">
+                  <div class="jumbotron">
+ 
         <ul class="user-profiles-list-basic">
 
-        <li>
-
-        
-            <p>
-           
-
-                
-
-                 <span><p><%=current_user['name']%></p></span>
-                <span><p><%=current_user['email']%>
-                <span>Home Location: <%=current_user.locations.first.address%></span>
-                <span>Work Location: <%=current_user.locations.second.address%></span>
-                
-                 </p>
-
-            <a class="delete" href="#"><i class="fa fa-close"></i></a>
+        <li> 
+          <a class="delete" href="#"><i class="fa fa-close"></i></a>
+                <span><p><%=current_user['name']%></p></span>
+                <span><p><%=current_user['email']%>                        
+               
 
         </li>
 
@@ -29,7 +20,7 @@
 </ul>
 
     
-      <a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      <a href="#" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
     Edit Account
       </a>
     </div>
@@ -50,32 +41,13 @@
 
              <%= f.text_field :name,autofocus: true, placeholder: 'Name', hide_label: true %>
            <%= f.text_field :email,  placeholder: 'Email', hide_label: true %>
-           <%= f.password_field :password,  placeholder: 'Password' , hide_label: true, id:"password" %>
-            <%= f.password_field :password_confirmation,  placeholder: 'Password confirmation', hide_label: true, id:"confirm_password" %>
+           <%= f.password_field :password,  placeholder: 'New Password' , hide_label: true, id:"password" %>
+           
             <%= f.submit "Submit",  class: 'btn btn-warning check' %>
 
           <% end %>
 
-<script>
 
-
-var password = document.getElementById("password")
-  , confirm_password = document.getElementById("confirm_password");
-
-function validatePassword(){
-  if(password.value != confirm_password.value) {
-    confirm_password.setCustomValidity("Passwords Don't Match");
-  } else {
-    confirm_password.setCustomValidity('');
-  }
-}
-
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
-
-
-
-</script>
 
 
 
@@ -84,39 +56,12 @@ confirm_password.onkeyup = validatePassword;
     </div>
 
   </div>
-</div>
+
+
+<% end %>
 <%else %>
 
 
            
-<ul class="user-profiles-list-basic">
-        <li>
-            <p>
-                <span></span>
-
-            </p>
-            <a class="delete" href="#"><i class="fa fa-close"></i></a>
-        </li>
-        <li>
-            <p>Test</p>
-            <a class="delete" href="#"><i class="fa fa-close"></i></a>
-        </li>
-        <li>
-            <p>Test</p>
-            <a class="delete" href="#"><i class="fa fa-close"></i></a>
-        </li>
-        <li>
-            <p>Test</p>
-            <a class="delete" href="#"><i class="fa fa-close"></i></a>
-        </li>
-        <li>
-            <p>Test</p>
-            <a class="delete" href="#"><i class="fa fa-close"></i></a>
-        </li>
-        <li>
-            <p>Test</p>
-            <a class="delete" href="#"><i class="fa fa-close"></i></a>
-        </li>
-
-</ul>
+<h1>Nothing to see here</h1>
 <% end %>

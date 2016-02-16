@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   def new
   end
   def edit
+     id = params[:id]
+    @user = User.find(id)
+
   end
 
   def index
@@ -18,7 +21,7 @@ class UsersController < ApplicationController
   def update
    
     id = params[:id]
-    user = User.find(id)
+    @user = User.find(id)
      binding.pry
     if user.update_attributes(user_params)
       flash[:notice] = "your account was successfully updated "
