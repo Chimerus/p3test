@@ -4,7 +4,7 @@
       <div class="col-lg-4">
     <% count = 1 %>
     <% @locations.each do |place| %>
-    <% origin = place.latitude.to_s+","+place.longitude.to_s %>
+    <% origin = "40.7400337,-73.9895989" %>
     <% uri = URI.encode('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+origin+'&destinations='+place.address+'&mode='+place.default_transport+'&language=en-EN&key='+@key) %>
       <% response = HTTParty.get(uri)
         parsed_response = JSON.parse(response.body)
