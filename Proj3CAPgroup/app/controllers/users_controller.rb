@@ -76,7 +76,11 @@ class UsersController < ApplicationController
       # neworigin = Location.new(loc_params)
       # @origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
       @locations = Location.where("user_id = '#{current_user['id']}'")
-      @origin = @locations.first.latitude.to_s+","+@locations.first.latitude.to_s
+      if @locations.first.latitude
+        @origin = @locations.first.latitude.to_s+","+@locations.first.longitude.to_s
+      else
+        @origin = "40.7400337,-73.9895989"
+      end
       render :eta
     else
       redirect_to '/'
