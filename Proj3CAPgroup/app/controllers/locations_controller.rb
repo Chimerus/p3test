@@ -18,7 +18,6 @@ class LocationsController < ApplicationController
   end
 
   def delete
-
   end
 
   def create
@@ -47,12 +46,18 @@ class LocationsController < ApplicationController
   end
 
   def update
-    @location = Location.find(params[:id])
+    # commented out code since the geolocate API finds SERVER location
+    # @location = Location.find(params[:id])
+    loc_params = location_params.clone
+    loc_params[:longitude] = loc_params[:longitude].to_f
+    loc_params[:latitude] = loc_params[:latitude].to_f
+    origin = Location.new(loc_params)
     # stop them from updating to an invalid address!
     key = ENV['MAPS_KEY']
-    origin_query = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+key)
-    parsed_response = JSON.parse(origin_query.body)["location"]
-    origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
+    # origin_query = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+key)
+    # parsed_response = JSON.parse(origin_query.body)["location"]
+    # origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
+    origin = neworigin.longitude.to_s+","+neworigin.latitude.to_s
     response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+origin+'&destinations='+@location.address+'&mode='+@location.default_transport+'&language=en-EN&key='+key) 
     parsed_response = JSON.parse(response.body)
     if parsed_response["rows"][0]["elements"][0]["status"] != "ZERO_RESULTS"
@@ -76,6 +81,7 @@ class LocationsController < ApplicationController
     flash[:success] = "ETA sent!"
     redirect_to '/eta'
   end
+
   def destroy
     @location = Location.find(params[:id])
     if @location.destroy
@@ -84,18 +90,18 @@ class LocationsController < ApplicationController
     end
   end
 
+private
 
-  private
-    def set_location
-      @location = Location.find(params[:id])
-    end
+  def set_location
+    @location = Location.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def location_params
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def location_params
     params.require(:location).permit(:location_name, :address,  :default_transport, :user_id, :longitude, :latitude).merge(user_id: current_user.id)
-    end
+  end
 
-    def send_message(send_to, msg)
+  def send_message(send_to, msg)
     @twilio_number = ENV['TWILIO_NUMBER']
     @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
     message = @client.account.messages.create(
@@ -105,4 +111,5 @@ class LocationsController < ApplicationController
     )
     puts message.body
   end
+
 end

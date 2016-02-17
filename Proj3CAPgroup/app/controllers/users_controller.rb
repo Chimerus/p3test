@@ -28,7 +28,6 @@ class UsersController < ApplicationController
   end
 
   def update
-   
     id = params[:id]
     @user = User.find(id)
     if @user.update_attributes(user_params)
@@ -38,8 +37,6 @@ class UsersController < ApplicationController
        flash[:notice] = "Error: Please enter a password"
        redirect_to(:back)
      end
-      
-
   end
 
   def create
@@ -65,14 +62,19 @@ class UsersController < ApplicationController
 
   def eta
     if current_user
-      @key = ENV['MAPS_KEY']
+      # @key = ENV['MAPS_KEY']
       # get their current location - google locate
-      response = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+@key)
-      if response.code != 200 
-        flash.now[:error] = "Error: Cannot find location"
-      else
+      # response = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+@key)
+      # if response.code != 200 
+        # flash.now[:error] = "Error: Cannot find location"
+      # else
         parsed_response = JSON.parse(response.body)["location"]
-        @origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
+        loc_params = location_params.clone
+        loc_params[:longitude] = loc_params[:longitude].to_f
+        loc_params[:latitude] = loc_params[:latitude].to_f
+        neworigin = Location.new(loc_params)
+        # @origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
+        @origin = loc_params[:latitude].to_s+","+loc_params[:longitude].to_s
         @locations = Location.where("user_id = '#{current_user['id']}'")
        end 
       render :eta
