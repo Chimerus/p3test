@@ -76,17 +76,18 @@
       <div class="modal-body">
 
          <%= bootstrap_form_for(Location.new) do |f| %>
-            <%= f.text_field :location_name, autofocus: true, placeholder: 'Name of location', hide_label: true %>
+            <%= f.text_field :location_name, autofocus: true, placeholder: 'Name your location here!', hide_label: true %>
             <%= f.hidden_field :longitude %>
             <%= f.hidden_field :latitude %>
             <div id='input'>
-                 <%= f.text_field :address,  placeholder: 'Address', hide_label: true, id: "gmaps-input-address" %>
+                 <%= f.text_field :address,  placeholder: 'Address of where you\'re going...' , hide_label: true, id: "gmaps-input-address" %>
                  <br/>
                  <br/>
                  <div id='gmaps-error'></div>
            </div>
 
             <div id='gmaps-canvas'></div>
+                  <p>Select your method of transportation:</p>
                    <%= f.radio_button :default_transport, 'walking', label: "Walking", checked: true %>
                    <%= f.radio_button :default_transport, 'bicycling', label: "Bicycling" %>
                    <%= f.radio_button :default_transport, 'driving', label: "Driving" %>
