@@ -26,7 +26,7 @@ class LocationsController < ApplicationController
     # loc_params[:longitude] = loc_params[:longitude].to_f
     # loc_params[:latitude] = loc_params[:latitude].to_f
     # @location = Location.new(loc_params)
-    @location = Location.find(params[:id])
+    @location = Location.new(location_params)
     # stop them from entering invalid address!
     key = ENV['MAPS_KEY']
     # origin_query = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+key)
