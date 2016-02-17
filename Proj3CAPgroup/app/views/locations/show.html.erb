@@ -15,7 +15,7 @@
 <form action="/sendeta" method="post">
   <label style="padding-top:10px; color:white; font-size:14pt;">Enter number to text ETA to</label>
   <div id="tel-input">
-    <input type="text" name="send_to" class="phone-width" placeholder="Country code, area code, number, no spaces EX: 19177220237"></br>
+    <input type="text" name="send_to" class="phone-width" placeholder="Example: 19177220237"></br>
   </div>
   <input type ="hidden" name="time" value="<%= @time %>">
   <input type ="hidden" name="destination" value="<%= @location.location_name %>">
