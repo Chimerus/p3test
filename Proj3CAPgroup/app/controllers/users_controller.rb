@@ -63,7 +63,7 @@ class UsersController < ApplicationController
   def eta
     if current_user
       # PLANNED: find out way to update the origins in db from current location
-      # @key = ENV['MAPS_KEY']
+      @key = ENV['MAPS_KEY']
       # get their current location - google locate
       # response = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+@key)
       # if response.code != 200 
