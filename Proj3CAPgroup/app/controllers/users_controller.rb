@@ -79,7 +79,7 @@ class UsersController < ApplicationController
       # if @locations.first
       #   @origin = @locations.first.latitude.to_s+","+@locations.first.longitude.to_s
       # else
-        @origin = "40.7400337,-73.9895989"
+      @origin = "40.7400337,-73.9895989"
       # end
       render :eta
     else
