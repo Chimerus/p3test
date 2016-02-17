@@ -68,15 +68,14 @@ class UsersController < ApplicationController
       # if response.code != 200 
         # flash.now[:error] = "Error: Cannot find location"
       # else
-        parsed_response = JSON.parse(response.body)["location"]
-        loc_params = location_params.clone
-        loc_params[:longitude] = loc_params[:longitude].to_f
-        loc_params[:latitude] = loc_params[:latitude].to_f
-        neworigin = Location.new(loc_params)
-        # @origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
-        @origin = loc_params[:latitude].to_s+","+loc_params[:longitude].to_s
-        @locations = Location.where("user_id = '#{current_user['id']}'")
-       end 
+      # parsed_response = JSON.parse(response.body)["location"]
+      # loc_params = location_params.clone
+      # loc_params[:longitude] = loc_params[:longitude].to_f
+      # loc_params[:latitude] = loc_params[:latitude].to_f
+      # neworigin = Location.new(loc_params)
+      # @origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
+      @locations = Location.where("user_id = '#{current_user['id']}'")
+      @origin = @locations.first.latitude.to_s+","+@locations.first.latitude.to_s
       render :eta
     else
       redirect_to '/'
@@ -89,7 +88,9 @@ private
     params.require(:user).permit(:name, :email, :password)
   end
 
-  
+  # def location_params
+  #   params.require(:location).permit(:location_name, :address, :default_transport, :user_id, :longitude, :latitude).merge(user_id: current_user.id)
+  # end
 
 end
 
