@@ -102,7 +102,8 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def location_params
-    params.require(:location).permit(:location_name, :address, :default_transport, :user_id, :longitude, :latitude).merge(user_id: current_user.id)
+    params.require(:location).permit(:location_name, :address, :default_transport, :user_id).merge(user_id: current_user.id)
+    # params.require(:location).permit(:location_name, :address, :default_transport, :user_id, :longitude, :latitude).merge(user_id: current_user.id)
   end
 
   def send_message(send_to, msg)
