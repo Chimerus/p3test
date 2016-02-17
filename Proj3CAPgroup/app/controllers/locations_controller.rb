@@ -49,17 +49,18 @@ class LocationsController < ApplicationController
 
   def update
     # commented out code since the geolocate API finds SERVER location
-    # @location = Location.find(params[:id])
-    loc_params = location_params.clone
-    loc_params[:longitude] = loc_params[:longitude].to_f
-    loc_params[:latitude] = loc_params[:latitude].to_f
-    neworigin = Location.new(loc_params)
+    @location = Location.find(params[:id])
+    # loc_params = location_params.clone
+    # loc_params[:longitude] = loc_params[:longitude].to_f
+    # loc_params[:latitude] = loc_params[:latitude].to_f
+    # neworigin = Location.new(loc_params)
     # stop them from updating to an invalid address!
     key = ENV['MAPS_KEY']
     # origin_query = HTTParty.post('https://www.googleapis.com/geolocation/v1/geolocate?key='+key)
     # parsed_response = JSON.parse(origin_query.body)["location"]
     # origin = parsed_response["lat"].to_s+","+parsed_response["lng"].to_s
-    origin = neworigin.longitude.to_s+","+neworigin.latitude.to_s
+    # origin = neworigin.longitude.to_s+","+neworigin.latitude.to_s
+    origin = "40.7400337,-73.9895989"
     response = HTTParty.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+origin+'&destinations='+@location.address+'&mode='+@location.default_transport+'&language=en-EN&key='+key) 
     parsed_response = JSON.parse(response.body)
     if parsed_response["rows"][0]["elements"][0]["status"] != "ZERO_RESULTS"
