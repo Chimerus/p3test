@@ -1,10 +1,16 @@
 <body>
-
+<script>
+  navigator.geolocation.getCurrentPosition(function(position) {
+  $("#location").html(position.coords.latitude+","+position.coords.longitude);
+  // console.log("I ran!");
+});
+</script>
+  <div id="location" hidden></div>
     <div class="row marketing centerrow">
       <div class="col-lg-4">
     <% count = 1 %>
     <% @locations.each do |place| %>
-    <% origin = "40.7400337,-73.9895989" %>
+    <% origin = $("#location").html() %>
     <% uri = URI.encode('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+origin+'&destinations='+place.address+'&mode='+place.default_transport+'&language=en-EN&key='+@key) %>
       <% response = HTTParty.get(uri)
         parsed_response = JSON.parse(response.body)

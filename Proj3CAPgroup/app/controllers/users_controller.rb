@@ -79,7 +79,7 @@ class UsersController < ApplicationController
       # if @locations.first
       #   @origin = @locations.first.latitude.to_s+","+@locations.first.longitude.to_s
       # else
-      @origin = "40.7400337,-73.9895989"
+      # @origin = "40.7400337,-73.9895989"
       # end
       render :eta
     else
@@ -93,9 +93,9 @@ private
     params.require(:user).permit(:name, :email, :password)
   end
 
-  # def location_params
-  #   params.require(:location).permit(:location_name, :address, :default_transport, :user_id, :longitude, :latitude).merge(user_id: current_user.id)
-  # end
+  def location_params
+    params.require(:location).permit(:location_name, :address, :default_transport, :user_id, :longitude, :latitude).merge(user_id: current_user.id)
+  end
 
 end
 
