@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 		#find the user by their email
 		user = User.where(email: params[:email]).first
 		if user && user.authenticate(params[:password])
-		  cookies.permanent[:auth_token] = user.auth_token
+		  cookies[:auth_token] = user.auth_token
 		 redirect_to '/eta'
 		else
 			flash[:notice] = "Invalid email or password"

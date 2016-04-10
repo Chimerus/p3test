@@ -4,12 +4,15 @@
       <div class="col-lg-4">
     <% count = 1 %>
     <% @locations.each do |place| %>
-    <% origin = "40.7400337,-73.9895989" %>
-    <% uri = URI.encode('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+origin+'&destinations='+place.address+'&mode='+place.default_transport+'&language=en-EN&key='+@key) %>
+     <!-- origin = "40.7400337,-73.9895989"  -->
+    <% uri = URI.encode('https://maps.googleapis.com/maps/api/distancematrix/json?origins='+@city+@country+'&destinations='+place.address+'&mode='+place.default_transport+'&language=en-EN&key='+@key) %>
       <% response = HTTParty.get(uri)
         parsed_response = JSON.parse(response.body)
         @time=parsed_response["rows"].first["elements"].first["duration"]["text"]
         @eta=parsed_response["rows"].first["elements"].first["duration"]["value"]%>
+        <div>
+          <%= @city %> + <%= @country %> 
+        </div>
 
       <% if count == 4 || count == 7 %>
           <a href="/locations/<%= place.id %>/<%= @time %>">
