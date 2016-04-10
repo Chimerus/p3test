@@ -80,9 +80,9 @@ class UsersController < ApplicationController
       # if @locations.first
       #   @origin = @locations.first.latitude.to_s+","+@locations.first.longitude.to_s
       # else
-      # @origin = "40.7400337,-73.9895989"
-      @city = request.location.city
-      @country = request.location.country_code
+      @origin = "40.7400337,-73.9895989"
+      # @city = request.location.city
+      # @country = request.location.country_code
       # end
       render :eta
     else
